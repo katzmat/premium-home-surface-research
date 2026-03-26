@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Surface Research Overview</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+    padding: 40px 44px;
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+
+  .header p {
+    font-size: 12px;
+    color: #888;
+  }
+
+  /* ---- FLOW SPINE ---- */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* ---- ARROW ---- */
+  .arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 0;
+  }
+
+  .arrow .line {
+    width: 2px;
+    height: 14px;
+    background: #ccc;
+  }
+
+  .arrow .head {
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 7px solid #ccc;
+  }
+
+  .arrow .label {
+    font-size: 9.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #aaa;
+    margin: 2px 0;
+  }
+
+  /* ---- SECTION BOXES ---- */
+  .section {
+    width: 100%;
+    border-radius: 10px;
+    padding: 18px 24px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+  }
+
+  /* ---- THESIS ---- */
+  .thesis {
+    background: #1a1a1a;
+    color: #fff;
+  }
+
+  .thesis .section-title { color: #888; }
+
+  .thesis-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .thesis-pill {
+    font-size: 11px;
+    color: #ddd;
+    padding: 5px 11px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 5px;
+    line-height: 1.35;
+  }
+
+  /* ---- ESTABLISHED ---- */
+  .established {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+  }
+
+  .established .section-title { color: #777; }
+
+  .est-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .est-chip {
+    flex: 1;
+    min-width: 160px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 8px 11px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .est-chip strong {
+    display: block;
+    font-size: 10.5px;
+    color: #999;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  /* ---- OPEN QUESTIONS ---- */
+  .questions {
+    background: #fffaf0;
+    border: 1.5px solid #e8d5a8;
+  }
+
+  .questions .section-title { color: #a68520; }
+
+  .q-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+
+  .q-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 11.5px;
+    line-height: 1.4;
+    padding: 7px 10px;
+    background: rgba(166, 133, 32, 0.05);
+    border-radius: 5px;
+  }
+
+  .q-icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #d4a843;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  .q-item strong { color: #8a6d1b; }
+
+  /* ---- DIVIDER LABEL ---- */
+  .divider-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 6px 0;
+  }
+
+  .divider-label .dl-line {
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+  }
+
+  .divider-label .dl-text {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    color: #aaa;
+    white-space: nowrap;
+  }
+
+  /* ---- PARALLEL TRACKS ---- */
+  .tracks {
+    display: flex;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .track {
+    flex: 1;
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+
+  .track-badge {
+    display: inline-block;
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .track-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .track-who {
+    font-size: 11px;
+    color: #777;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .track-desc {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .track-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .track-list li {
+    font-size: 11.5px;
+    line-height: 1.4;
+    padding: 4px 0 4px 18px;
+    position: relative;
+    color: #444;
+  }
+
+  .track-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .track-output {
+    margin-top: 10px;
+    padding: 8px 11px;
+    border-radius: 5px;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .track-output strong {
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* Track A - Gauntlet */
+  .track-gauntlet {
+    background: #fef9ef;
+    border: 1.5px solid #e8d5a8;
+  }
+
+  .track-gauntlet .track-badge { background: #d4a843; }
+  .track-gauntlet .track-title { color: #8a6d1b; }
+  .track-gauntlet .track-list li::before { background: #d4a843; }
+  .track-gauntlet .track-output { background: rgba(212,168,67,0.1); border-left: 3px solid #d4a843; }
+  .track-gauntlet .track-output strong { color: #8a6d1b; }
+
+  /* Track B - Intelligence */
+  .track-intel {
+    background: #f0f4ff;
+    border: 1.5px solid #b8c9ed;
+  }
+
+  .track-intel .track-badge { background: #4a7bd4; }
+  .track-intel .track-title { color: #2d5aa0; }
+  .track-intel .track-list li::before { background: #4a7bd4; }
+  .track-intel .track-output { background: rgba(74,123,212,0.08); border-left: 3px solid #4a7bd4; }
+  .track-intel .track-output strong { color: #2d5aa0; }
+
+  /* ---- CONVERGENCE ---- */
+  .convergence {
+    background: #f0faf4;
+    border: 1.5px solid #a8dbb8;
+  }
+
+  .convergence .track-badge { background: #3a9d5c; }
+  .convergence .track-title { color: #2a7a44; }
+
+  .conv-what {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+
+  .conv-interactions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .conv-card {
+    flex: 1;
+    background: rgba(58, 157, 92, 0.06);
+    border-radius: 6px;
+    padding: 9px 11px;
+  }
+
+  .conv-card strong {
+    display: block;
+    font-size: 10.5px;
+    color: #2a7a44;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .conv-card span {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  .conv-who {
+    font-size: 11px;
+    color: #777;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+
+  /* ---- MERGE ARROWS ---- */
+  .merge-arrows {
+    width: 100%;
+    height: 26px;
+    position: relative;
+  }
+
+  .merge-arrows .left-rise {
+    position: absolute; top: 0; left: 25%;
+    width: 2px; height: 9px; background: #ccc;
+  }
+  .merge-arrows .right-rise {
+    position: absolute; top: 0; right: 25%;
+    width: 2px; height: 9px; background: #ccc;
+  }
+  .merge-arrows .bar {
+    position: absolute; top: 9px; left: 25%; right: 25%;
+    height: 2px; background: #ccc;
+  }
+  .merge-arrows .stem {
+    position: absolute; left: 50%; top: 9px;
+    width: 2px; height: 9px; background: #ccc;
+  }
+  .merge-arrows .head {
+    position: absolute; top: 18px; left: calc(50% - 5px);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 7px solid #ccc;
+  }
+
+  /* ---- FORK ARROWS ---- */
+  .fork-arrows {
+    width: 100%;
+    height: 26px;
+    position: relative;
+  }
+
+  .fork-arrows .stem {
+    position: absolute; left: 50%; top: 0;
+    width: 2px; height: 9px; background: #ccc;
+  }
+  .fork-arrows .bar {
+    position: absolute; top: 9px; left: 25%; right: 25%;
+    height: 2px; background: #ccc;
+  }
+  .fork-arrows .left-drop {
+    position: absolute; top: 9px; left: 25%;
+    width: 2px; height: 9px; background: #ccc;
+  }
+  .fork-arrows .right-drop {
+    position: absolute; top: 9px; right: 25%;
+    width: 2px; height: 9px; background: #ccc;
+  }
+  .fork-arrows .left-head {
+    position: absolute; top: 18px; left: calc(25% - 5px);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 7px solid #ccc;
+  }
+  .fork-arrows .right-head {
+    position: absolute; top: 18px; right: calc(25% - 7px);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 7px solid #ccc;
+  }
+
+  /* ---- OUTPUTS ---- */
+  .outputs {
+    display: flex;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .output-box {
+    flex: 1;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    text-align: center;
+  }
+
+  .output-box h3 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  .output-box p {
+    font-size: 11px;
+    color: #aaa;
+    line-height: 1.45;
+  }
+
+  /* ---- SEVEN QUESTIONS SIDEBAR ---- */
+  .seven-q {
+    margin-top: 10px;
+    background: rgba(74,123,212,0.04);
+    border-radius: 6px;
+    padding: 10px 12px;
+  }
+
+  .seven-q h4 {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #2d5aa0;
+    margin-bottom: 6px;
+  }
+
+  .seven-q ol {
+    margin: 0;
+    padding-left: 16px;
+  }
+
+  .seven-q li {
+    font-size: 10.5px;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 2px;
+  }
+
+  /* ---- METHOD PILLS ---- */
+  .method-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
+  }
+
+  .method-pill {
+    font-size: 9.5px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: rgba(74,123,212,0.1);
+    color: #3a6bb8;
+  }
+
+  .method-pill.core {
+    background: #4a7bd4;
+    color: #fff;
+    font-weight: 600;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Home Surface Research Overview</h1>
+  <p>Yahoo Mail Premium &middot; What we believe, what we need to learn, and how we'll learn it</p>
+</div>
+
+<div class="flow">
+
+  <!-- ============ CORE THESIS ============ -->
+  <div class="section thesis">
+    <div class="section-title">Core Thesis &mdash; What the Home Surface Must Be</div>
+    <div class="thesis-pills">
+      <div class="thesis-pill">Low cognitive lift</div>
+      <div class="thesis-pill">Radically improved signal-to-noise</div>
+      <div class="thesis-pill">Powered by the Life Graph</div>
+      <div class="thesis-pill">Designed for rapid processing</div>
+      <div class="thesis-pill">Creates a sense of low-lift completion</div>
+      <div class="thesis-pill">Breaks from sender/subject/snippet chronological inbox</div>
+      <div class="thesis-pill">One flexible surface, not a network of views</div>
+      <div class="thesis-pill">Comprehensive enough to replace the inbox entirely</div>
+    </div>
+  </div>
+
+  <div class="arrow">
+    <div class="line"></div>
+    <div class="label">grounded by</div>
+    <div class="head"></div>
+  </div>
+
+  <!-- ============ ESTABLISHED PRINCIPLES ============ -->
+  <div class="section established">
+    <div class="section-title">What We Already Know &mdash; Validated, Do Not Re-Test</div>
+    <div class="est-row">
+      <div class="est-chip">
+        <strong>Chunking works</strong>
+        Bite-sized cognitive chunks provide emotional and cognitive relief
+      </div>
+      <div class="est-chip">
+        <strong>Whole-picture upshot</strong>
+        "Since you were last here" is non-negotiable to prevent FOMO
+      </div>
+      <div class="est-chip">
+        <strong>Privacy &lt; value</strong>
+        Users accept Life Graph tradeoffs if value delivers
+      </div>
+      <div class="est-chip">
+        <strong>Upcoming &ge; incoming</strong>
+        Tracking obligations is as important as triaging new mail
+      </div>
+      <div class="est-chip">
+        <strong>Replace, don't add</strong>
+        Must become the primary experience, not another surface
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow">
+    <div class="line"></div>
+    <div class="label">leaves us with</div>
+    <div class="head"></div>
+  </div>
+
+  <!-- ============ OPEN QUESTIONS ============ -->
+  <div class="section questions">
+    <div class="section-title">What We Still Need to Learn</div>
+    <div class="q-grid">
+      <div class="q-item">
+        <div class="q-icon">?</div>
+        <span><strong>Information architecture</strong> &mdash; Categories, priority tiers, or temporal flow? Where does incoming end and upcoming begin?</span>
+      </div>
+      <div class="q-item">
+        <div class="q-icon">?</div>
+        <span><strong>Content density</strong> &mdash; How much per item? Headlines, micro-briefs, or category summaries? How does it flex by volume?</span>
+      </div>
+      <div class="q-item">
+        <div class="q-icon">?</div>
+        <span><strong>Triage mechanics</strong> &mdash; System decides, user confirms, or a spectrum? What are the gestures?</span>
+      </div>
+      <div class="q-item">
+        <div class="q-icon">?</div>
+        <span><strong>Cognitive framing</strong> &mdash; Briefing, dashboard, assistant, or something new? Does the frame create calm or anxiety?</span>
+      </div>
+      <div class="q-item">
+        <div class="q-icon">?</div>
+        <span><strong>Completion model</strong> &mdash; What replaces the unread count as "I'm done"? Explicit state, depletion, or ambient calm?</span>
+      </div>
+      <div class="q-item">
+        <div class="q-icon">?</div>
+        <span><strong>Intelligence quality</strong> &mdash; Can the AI distinguish what matters to <em>this person</em> from what's generically urgent? Does it improve over time?</span>
+      </div>
+      <div class="q-item">
+        <div class="q-icon">?</div>
+        <span><strong>Behavior patterns</strong> &mdash; How do people scan? Quick check vs. deep session? What triggers drill-down vs. surface action?</span>
+      </div>
+      <div class="q-item">
+        <div class="q-icon">?</div>
+        <span><strong>User agency</strong> &mdash; How much control vs. delegation? Does it vary by email type, trust level, and tenure?</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow">
+    <div class="line"></div>
+    <div class="label">answered through</div>
+    <div class="head"></div>
+  </div>
+
+  <!-- ============ RESEARCH STRUCTURE LABEL ============ -->
+  <div class="divider-label">
+    <div class="dl-line"></div>
+    <div class="dl-text">Two parallel workstreams</div>
+    <div class="dl-line"></div>
+  </div>
+
+  <!-- ============ FORK ============ -->
+  <div class="fork-arrows">
+    <div class="stem"></div>
+    <div class="bar"></div>
+    <div class="left-drop"></div>
+    <div class="right-drop"></div>
+    <div class="left-head"></div>
+    <div class="right-head"></div>
+  </div>
+
+  <!-- ============ PARALLEL TRACKS ============ -->
+  <div class="tracks">
+
+    <!-- CONCEPT GAUNTLET -->
+    <div class="track track-gauntlet">
+      <div class="track-badge">Concept Gauntlet</div>
+      <div class="track-title">Which experience visions resonate?</div>
+      <div class="track-who">5 internal + 5&ndash;8 external &middot; via dScout Express</div>
+
+      <div class="track-desc">4 distinct visions of the Home Surface, each expressed through two lenses. Go wide, then narrow to 2&ndash;3 winners.</div>
+
+      <ul class="track-list">
+        <li><strong>Lens 1: Landing page w/ motion</strong> &mdash; the promise. "Would I want this?"</li>
+        <li><strong>Lens 2: Narrated video walkthrough</strong> &mdash; the logic. "Could I do this every morning?"</li>
+        <li><strong>Divergence signal:</strong> Landing page love + walkthrough confusion = what to fix in the prototype</li>
+        <li><strong>Dimension mapping:</strong> Do reactions cluster around density, framing, completion, or IA?</li>
+      </ul>
+
+      <div class="track-output">
+        <strong>Feeds forward:</strong> 2&ndash;3 winning directions with refinement briefs &mdash; what worked, what to change, which dimensions matter most
+      </div>
+    </div>
+
+    <!-- INTELLIGENCE CALIBRATION -->
+    <div class="track track-intel">
+      <div class="track-badge">Intelligence Calibration</div>
+      <div class="track-title">Is the AI good enough?</div>
+      <div class="track-who">5&ndash;7 dedicated dogfooders from target audience &middot; ongoing</div>
+
+      <div class="track-desc">The Home Surface depends on AI that understands your email life. Before we can test the experience, we need to know if the intelligence behind it works. A flexible toolkit of 6 methods, deployed based on what we're learning.</div>
+
+      <div class="method-pills">
+        <span class="method-pill core">Shadow Inbox (daily)</span>
+        <span class="method-pill">Side-by-Side Comparison</span>
+        <span class="method-pill">Display Variations</span>
+        <span class="method-pill">Real-Time Walkthrough</span>
+        <span class="method-pill">Build-Your-Own Briefing</span>
+        <span class="method-pill">Stress Tests</span>
+      </div>
+
+      <div class="seven-q">
+        <h4>7 Key Questions</h4>
+        <ol>
+          <li>Personal importance vs. generic urgency</li>
+          <li>Connecting dots across messages</li>
+          <li>Right altitude for "since you were last here"</li>
+          <li>Improvement trajectory over time</li>
+          <li>Does it feel like it <em>knows</em> you?</li>
+          <li>Graceful failure &mdash; humble vs. confident when wrong</li>
+          <li>Quality across frequencies and volumes</li>
+        </ol>
+      </div>
+
+      <div class="track-output">
+        <strong>Feeds forward:</strong> Accuracy trajectory, failure patterns, calibrated prompts, and evidence for which Life Graph layers are load-bearing
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ MERGE ============ -->
+  <div class="merge-arrows">
+    <div class="left-rise"></div>
+    <div class="right-rise"></div>
+    <div class="bar"></div>
+    <div class="stem"></div>
+    <div class="head"></div>
+  </div>
+
+  <div class="divider-label">
+    <div class="dl-line"></div>
+    <div class="dl-text">Both tracks converge into</div>
+    <div class="dl-line"></div>
+  </div>
+
+  <!-- ============ CONVERGENCE ============ -->
+  <div class="section convergence">
+    <div class="track-badge" style="background:#3a9d5c; color:#fff;">Convergence</div>
+    <div class="track-title" style="color:#2a7a44; margin-bottom: 6px;">Experience Prototypes</div>
+
+    <div class="conv-what">Gauntlet winners built as full interactive prototypes, <strong>powered by intelligence we've already calibrated</strong>. The prototype doesn't just <em>look</em> right &mdash; it's backed by AI we know works. Tested by a fresh external panel who experience the integrated product directly.</div>
+
+    <div class="conv-interactions">
+      <div class="conv-card">
+        <strong>Accuracy changes tolerance</strong>
+        <span>People accept denser surfaces when they trust the AI's priorities. Unreliable intelligence makes the same density feel overwhelming.</span>
+      </div>
+      <div class="conv-card">
+        <strong>Framing changes trust</strong>
+        <span>Same accuracy feels trustworthy in a "Chief of Staff" frame but anxiety-inducing in a "Morning Brief" frame.</span>
+      </div>
+      <div class="conv-card">
+        <strong>Completion depends on accuracy</strong>
+        <span>"You're all caught up" only works if the system actually caught everything. The right model differs at 70% vs. 90%.</span>
+      </div>
+    </div>
+
+    <div class="conv-who">Fresh external dScout panel (5&ndash;8) &middot; Instrumented web apps &middot; Moderated labs &middot; Built-in behavioral analytics</div>
+  </div>
+
+  <!-- ============ ARROW TO OUTPUTS ============ -->
+  <div class="fork-arrows">
+    <div class="stem"></div>
+    <div class="bar"></div>
+    <div class="left-drop"></div>
+    <div class="right-drop"></div>
+    <div class="left-head"></div>
+    <div class="right-head"></div>
+  </div>
+
+  <!-- ============ DELIVERABLES ============ -->
+  <div class="outputs">
+    <div class="output-box">
+      <h3>Experience Direction Deck</h3>
+      <p>The 2 strongest directions with behavioral data, qualitative signal, and analytics. What each needs to become a product.</p>
+    </div>
+    <div class="output-box">
+      <h3>Intelligence Readiness Assessment</h3>
+      <p>Where the intelligence stands, what's strong, and where to focus investment. Accuracy trajectory and failure mode evidence.</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -203,31 +203,33 @@
 <!-- HEADER -->
 <h1>Yahoo Mail Premium</h1>
 <div class="subtitle">Home Surface Research Plan</div>
-<div class="subtitle">Concept Gauntlet &middot; Shadow Inbox &middot; Experience Prototypes</div>
+<div class="subtitle">Concept Gauntlet &middot; Intelligence Calibration &middot; Experience Prototypes</div>
 <div class="date">Draft for Discussion &middot; March 2026 &middot; UX Research</div>
 
 <!-- TOPLINE -->
 <div class="topline">
 <h2>Topline Summary</h2>
 
-<p>We're researching the <strong>Home Surface</strong> — a new primary email screen that replaces the chronological inbox with an intelligent, life-organized experience powered by the Life Graph. This plan answers two questions in parallel:</p>
+<p>We're researching the <strong>Home Surface</strong> — a new primary email screen that replaces the chronological inbox with an intelligent, life-organized experience powered by the Life Graph. Two workstreams run in parallel from the start, then converge:</p>
 
 <ol>
-  <li><strong>Does the experience work?</strong> We start with 4 distinct experience visions, rapidly evaluate them through a <strong>Concept Gauntlet</strong> (landing pages + video walkthroughs via dScout Express), then build the 2–3 winners as full interactive, instrumented web prototypes tested by an external panel.</li>
-  <li><strong>Is the intelligence ready?</strong> We run a 1–2 week <strong>Shadow Inbox</strong> simulation with 5 internal dogfooders — comparing what the system <em>would have shown</em> against their real inbox. This calibrates accuracy, surfaces failure modes, and produces a clear recommendation on whether we can build the intelligence in-house or need vendor consultation.</li>
+  <li><strong>Does the experience work?</strong> We start with 4 distinct experience visions, rapidly evaluate them through a <strong>Concept Gauntlet</strong> (landing pages + video walkthroughs via dScout Express), narrowing to 2–3 winners.</li>
+  <li><strong>Is the intelligence ready?</strong> Running alongside the Gauntlet, <strong>Intelligence Calibration</strong> uses a flexible 6-method toolkit with 5–7 dedicated dogfooders to test whether the Life Graph can distinguish what matters to <em>this specific person</em> from what's generically urgent. Shadow Inbox is the core daily method; five additional methods rotate in based on what we're learning.</li>
 </ol>
+
+<p>Both tracks converge into <strong>Experience Prototypes</strong> — the Gauntlet winners built as instrumented web apps, powered by intelligence we've already calibrated. Tested by a fresh external panel.</p>
 
 <p><strong>Target archetype:</strong> The overwhelmed millennial parent — permission slips mixed with mortgage alerts mixed with soccer carpool. If this works for them, it works for everyone.</p>
 
-<p><strong>Timeline:</strong> 5 weeks. Gauntlet runs Weeks 1–2. Intelligence calibration runs Weeks 2–3. Experience prototypes tested Weeks 3–5.</p>
+<p><strong>Timeline:</strong> 5 weeks. Concept Gauntlet runs Weeks 1–2. Intelligence Calibration runs Weeks 1–5 (ongoing). Experience Prototypes built and tested Weeks 3–5.</p>
 
 <p><strong>Week 5 deliverables:</strong></p>
 <ol>
   <li><strong>Experience direction deck</strong> — the 2 strongest directions with data, for cross-functional leadership</li>
-  <li><strong>Intelligence readiness assessment</strong> — can we build this, or do we need outside help?</li>
+  <li><strong>Intelligence readiness assessment</strong> — where the intelligence stands, what's strong, and where to focus investment</li>
 </ol>
 
-<p><strong>Participants:</strong> 5 internal dogfooders (Weeks 1–3, then roll off) + 5–8 external dScout recruits (Weeks 3–5, fresh eyes on prototypes).</p>
+<p><strong>Participants:</strong> 5–7 internal dogfooders (Weeks 1–5, ongoing intelligence calibration) + 5–8 external dScout recruits (Weeks 3–5, fresh eyes on prototypes).</p>
 </div>
 
 <!-- PAGE BREAK INTO FULL PLAN -->
@@ -357,17 +359,111 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
 <hr>
 
 <!-- TRACK A -->
-<h3>Track A — Intelligence Calibration (Shadow Inbox + WoZ)</h3>
-<p><span class="label">Weeks 2–3</span></p>
+<h3>Track A — Intelligence Calibration</h3>
+<p><span class="label">Weeks 1–5 &middot; Ongoing</span></p>
 
-<p><strong>Goal:</strong> Calibrate Life Graph judgment quality through daily Wizard-of-Oz simulation against real participant email data. This is a calibration sprint (1–2 weeks), not an extended study.</p>
+<p><strong>Goal:</strong> Answer the fundamental question: can the Life Graph distinguish what matters to <em>this specific person</em> from what's generically urgent? This track runs in parallel with the Concept Gauntlet from Week 1, using a flexible toolkit of 6 research methods with 5–7 dedicated dogfooders from our target audience.</p>
 
-<h4>The Shadow Inbox Method</h4>
-<p>Each participant maintains their real inbox as-is, but receives a daily simulated view of what the Home Surface <em>would have shown</em> them. This creates a direct comparison loop: did the system get it right?</p>
+<h4>Why This Matters</h4>
+<p>Every feature in the Mail Premium strategy depends on the system understanding who the user is. The inbox has none of that understanding today. It does not know your children's names, that you are mid-remodel, or that the Amazon package arriving Wednesday is a birthday gift. All of that context — the tacit knowledge of your life — lives entirely in your head. The system sees emails. You see your life. That gap is why every email product feels generic.</p>
 
-<p><strong>5 internal dogfooders. Weekdays only.</strong></p>
+<p>Email management is a tacit knowledge problem. When you scan your inbox, you are not performing text classification. You are running your entire life model against each message. "Amazon shipment update" means nothing to the system; "Piper's birthday gift arrives Wednesday" means something because you know Piper is turning one, the Hungry Caterpillar items were the gift, and Wednesday is the party. No amount of semantic embedding captures that chain of reasoning. The LLM needs the same contextual web you carry in your head.</p>
 
-<h4>Daily Cycle</h4>
+<div class="callout-blue">
+  <strong>Where context value varies:</strong> The life graph's power scales with the contextual depth the task requires. For the morning brief ("Risa forwarded the credit card statement needing a $2,773 transfer by April 7th"), the graph adds enormous value — it's the difference between a generic financial summary and one that knows your household's shared financial workflow. For basic filtering — separating political spam from school emails — you need much less context. The most valuable Premium features (briefs, generative search, chief of staff agent) are exactly the ones requiring the deepest context. This alignment — premium features needing premium data — validates the subscription model.
+</div>
+
+<h4>The 7 Questions We Need to Answer</h4>
+<table>
+  <tr><th style="width:5%">#</th><th style="width:28%">Question</th><th>What we're really asking</th></tr>
+  <tr>
+    <td><strong>1</strong></td>
+    <td><strong>Personal importance vs. generic urgency</strong></td>
+    <td>The permission slip due Friday matters more to a parent than the LinkedIn notification, even though both are "time-sensitive." Can the system distinguish what matters to <em>this specific person</em> from what's objectively urgent?</td>
+  </tr>
+  <tr>
+    <td><strong>2</strong></td>
+    <td><strong>Connecting dots across messages</strong></td>
+    <td>The contractor email Monday + payment reminder Wednesday + scheduling email today = "your kitchen renovation needs three things from you this week." Can it synthesize related threads, or does it treat every email as standalone?</td>
+  </tr>
+  <tr>
+    <td><strong>3</strong></td>
+    <td><strong>The "since you were last here" summary</strong></td>
+    <td>Too vague and people don't trust it. Too detailed and it's just another inbox. Can the intelligence find the right altitude — complete enough to feel safe, concise enough to feel like relief?</td>
+  </tr>
+  <tr>
+    <td><strong>4</strong></td>
+    <td><strong>Improvement trajectory over time</strong></td>
+    <td>If Day 1 is 50% accuracy and Day 10 is 75% with the curve still rising, we have a path. If Day 10 is 55%, we know exactly where to focus. The trajectory matters more than any single day's score.</td>
+  </tr>
+  <tr>
+    <td><strong>5</strong></td>
+    <td><strong>Does it feel like it knows you?</strong></td>
+    <td>Two systems can be equally accurate but feel completely different. One feels like a trusted assistant who understands your life. The other feels like an algorithm. The difference is in tone, warmth, and small details — calling your kid's school by name vs. "a school-related email."</td>
+  </tr>
+  <tr>
+    <td><strong>6</strong></td>
+    <td><strong>Graceful failure</strong></td>
+    <td>The system will never be 100%. Does a missed priority feel catastrophic or minor? Does one bad call erode confidence in the whole surface? Confident and wrong is far worse than humble and slightly off. How does it handle its own uncertainty?</td>
+  </tr>
+  <tr>
+    <td><strong>7</strong></td>
+    <td><strong>Quality across frequencies and volumes</strong></td>
+    <td>Checking in after 2 hours with 4 new emails is fundamentally different from returning Monday morning to 60 weekend emails. The intelligence needs to scale both directions and the "since you were last here" framing needs to feel appropriate whether the gap is 90 minutes or 48 hours.</td>
+  </tr>
+</table>
+
+<h4>The Method Toolkit</h4>
+<p>Rather than a single rigid daily plan, we use a toolkit of 6 methods and pick 2–3 per week based on what we're learning and where we're stuck. Shadow Inbox runs throughout as the core daily method. Others rotate in as needed — Stress Tests when a hard day naturally occurs, Real-Time Walkthroughs when we need to understand <em>why</em> something failed. This keeps us responsive to reality instead of locked into a plan that may not fit what we're finding.</p>
+
+<table>
+  <tr><th style="width:5%">#</th><th style="width:22%">Method</th><th>Description</th><th style="width:20%">Best for</th><th style="width:14%">Effort</th></tr>
+  <tr>
+    <td><strong>1</strong></td>
+    <td><strong>Shadow Inbox</strong></td>
+    <td>We create the "ideal" AI-generated version of what the Home Surface would show each participant, based on their real inbox that morning. They receive it within 1–2 hours and rate how well we did — were priorities right? Anything missed? Did the summary feel complete? This is the closest thing to testing the real product without having the real product.</td>
+    <td>Accuracy baseline, tracking improvement, topline summary</td>
+    <td>~8–15 min/person (op) + ~8 min/day (px)</td>
+  </tr>
+  <tr>
+    <td><strong>2</strong></td>
+    <td><strong>Side-by-Side Model Comparison</strong></td>
+    <td>Show the participant 2–3 different AI outputs for the same inbox snapshot. These might use different context graph versions, different prompt strategies, or different amounts of life context. Which one got your priorities right? Which one feels like it actually knows you? Which one would you trust every morning?</td>
+    <td>Choosing between AI approaches, warmth vs. accuracy tradeoffs</td>
+    <td>~20 min (op) + ~10 min (px)</td>
+  </tr>
+  <tr>
+    <td><strong>3</strong></td>
+    <td><strong>Display Variation Testing</strong></td>
+    <td>Same intelligence output, presented in different ways. We vary the structure (grouped by category vs. ranked by priority vs. woven into narrative), the length (one-liner vs. full micro-brief), and the tone (warm and conversational vs. clean and efficient). Separates whether the reaction is about the <em>intelligence</em> being wrong or the <em>display</em> not working.</td>
+    <td>Isolating presentation from intelligence quality, finding right density and tone</td>
+    <td>~15 min (op) + ~10 min (px)</td>
+  </tr>
+  <tr>
+    <td><strong>4</strong></td>
+    <td><strong>Real-Time Walkthrough &amp; Annotation</strong></td>
+    <td>A live session where we show the Shadow Inbox output and walk through it together. They narrate in real time: "This is right... this is wrong... you don't know my kid is allergic and this is actually from the allergist, not spam..." This is the richest signal — it surfaces invisible context and the <em>why</em> behind every failure.</td>
+    <td>Understanding why accuracy fails, surfacing context the AI can't see</td>
+    <td>~20–30 min (live, moderated)</td>
+  </tr>
+  <tr>
+    <td><strong>5</strong></td>
+    <td><strong>Build-Your-Own Briefing</strong></td>
+    <td>We give participants their raw inbox data and ask <em>them</em> to create the ideal Home Surface view. What would you prioritize? How would you group these? What would the summary say? Establishes the "gold standard" and reveals mental models — do they think in categories, timelines, or priority tiers?</td>
+    <td>Establishing the target, revealing natural organization models</td>
+    <td>~15–20 min (px, 1–2 times total)</td>
+  </tr>
+  <tr>
+    <td><strong>6</strong></td>
+    <td><strong>Stress Test Scenarios</strong></td>
+    <td>Deliberately throw hard days at the system. What happens with 60 emails after a long weekend? One urgent item buried in 30 routine ones? A day where the most important thing came from a verbal conversation the AI can't see? The system works fine on an average Tuesday — the question is what happens on hard days, when users need it most.</td>
+    <td>Finding the breaking point, understanding failure at the edges</td>
+    <td>~15 min (px, curated or natural)</td>
+  </tr>
+</table>
+
+<h4>Shadow Inbox Daily Cycle</h4>
+<p>Shadow Inbox is the core recurring method. The daily cycle:</p>
 <p><span class="step-number">1</span><strong>Morning input</strong> (participant, ~5 min): dScout diary — screenshots, voice narration of what's important, structured fields for top priorities and upcoming items.</p>
 <p><span class="step-number">2</span><strong>WoZ processing</strong> (operator, ~8–15 min/participant): Feed input into Claude prompt template that simulates Home Surface logic — prioritizing, categorizing, generating micro-briefs, separating incoming from upcoming. Output rendered into high-fidelity static mockup. Batch all participants after a morning cutoff.</p>
 <p><span class="step-number">3</span><strong>Shadow Inbox delivery</strong> (within 1–2 hours): Participant receives their personalized view while morning context is fresh.</p>
@@ -383,6 +479,52 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
   <tr><td>Temporal</td><td>Morning-optimized (upcoming-heavy) vs. catch-up (since-last-visit-heavy) vs. unified</td></tr>
 </table>
 
+<h4>Life Graph Architecture (Current State &amp; Direction)</h4>
+<p>The current prototype implements the life graph as a ProfileData schema with five domain objects: identity, coordination circle, life threads, mailbox profile, and priority rules. The LLM also generates a rich contextual life graph in markdown — twelve sections covering identity, work, education, healthcare, finances, home, coordination circle, interests, email behavior, active threads, a subject-matter graph, and mailbox purpose classification.</p>
+
+<p>The gap between the structured schema and the rich markdown is the most important observation. The LLM <em>can</em> generate that markdown. But the product currently consumes only the flat schema. Most of the richest context — that the family vet closed and needs replacement, that 74% of emails are noise, that the user writes sentimental letters to special email addresses for each child — gets generated but not structurally leveraged.</p>
+
+<div class="callout-blue">
+  <strong>Key architectural gaps the calibration will expose:</strong>
+  <ul style="margin-bottom: 0;">
+    <li><strong>No action / commitment layer:</strong> The schema describes the world but not what needs to happen next. A production system needs structured representations of pending actions, deadlines, owners, and confidence levels. This is what separates a "smart inbox" from a "chief of staff."</li>
+    <li><strong>Behavioral layer is underspecified:</strong> Opens, deletes, stars, skips, pauses — none feed into the structured schema yet. A user's tolerance for 300+ unread is dispositional, not seasonal. The real signal is which senders they read within the first hour versus which pile up for days.</li>
+    <li><strong>Cross-thread causal inference is implicit:</strong> Multiple unrelated emails (Hungry Caterpillar order + Pampers order + daycare reports + pediatric appointment) combine to infer "Piper's first birthday is this week." The current system generates this in markdown but it's consumed once, not discoverable or queryable.</li>
+    <li><strong>Feedback loop architecture is unspecified:</strong> When a user moves an email from the wrong category to the right one, what happens to the graph? Evidence suggests maintaining a correction log that regeneration consumes, rather than making direct schema mutations.</li>
+  </ul>
+</div>
+
+<h4>Layered Architecture Direction</h4>
+<p>Intelligence calibration will generate evidence for a layered architecture with different durability at different levels:</p>
+<table>
+  <tr><th>Layer</th><th>What it is</th><th>Durability</th></tr>
+  <tr>
+    <td><strong>Layer 1: Entity Ledger</strong></td>
+    <td>Resolved entities (people, orgs, places, accounts), canonical identifiers, stable relationships. "Shannon Rueffer is Jennie's Grade 3 teacher at ISI" persists until corrected. The backbone the LLM doesn't have to re-derive. Primary source of compounding value and switching cost.</td>
+    <td>Durable, append-only</td>
+  </tr>
+  <tr>
+    <td><strong>Layer 2a: Behavioral Baselines</strong></td>
+    <td>How this specific person uses email as a medium. Triage disposition, response latency profiles, engagement rhythm, signal-to-noise calibration. Remarkably stable — a user's tolerance for 300+ unread doesn't change month to month. Computable from existing mail intelligence infrastructure.</td>
+    <td>Quasi-durable (weeks-to-months cadence)</td>
+  </tr>
+  <tr>
+    <td><strong>Layer 2b: Temporal Fabric</strong></td>
+    <td>Rhythmic and lifecycle structure — recurring cadences (daycare reports every weekday at 3:30pm), seasonal windows (Girl Scout cookie season Jan–Mar), one-time arcs (wedding building toward June 20th), deadline anchors. Enables the shift from "what's happening" to "what should be happening but isn't."</td>
+    <td>Mixed (recurring = durable, lifecycle = time-bounded, anomaly = ephemeral)</td>
+  </tr>
+  <tr>
+    <td><strong>Layer 2c: Active Life State</strong></td>
+    <td>Current life threads, active priorities, pending actions, relationship dynamics, cross-thread connections. What the LLM regenerates frequently by reading recent email against Layer 1's entity map, informed by 2a and 2b. This is where cross-thread causal inference lives.</td>
+    <td>Regenerable (daily or on each inbox open)</td>
+  </tr>
+  <tr>
+    <td><strong>Layer 3: Contextual Narratives</strong></td>
+    <td>Briefs, summaries, search answers, category labels, agent recommendations. Generated on demand from all prior layers. Never stored as source of truth. Should feel like climate control — noticed when wrong, invisible when right.</td>
+    <td>Fully ephemeral</td>
+  </tr>
+</table>
+
 <h4>Metrics</h4>
 <ul>
   <li><strong>Priority accuracy</strong> (~80% target): system's top-3 vs. participant's self-reported top-3</li>
@@ -390,42 +532,52 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
   <li><strong>Trust trajectory:</strong> does confidence increase, plateau, or erode?</li>
   <li><strong>Completion signal effectiveness:</strong> which variant produces the most confidence to stop checking?</li>
   <li><strong>Density preference:</strong> does preference correlate with volume or email type?</li>
+  <li><strong>Cross-thread synthesis:</strong> can the system connect dots across messages into actionable summaries?</li>
+  <li><strong>Perceived personalization:</strong> does it feel like it knows you, or like an algorithm?</li>
 </ul>
 
 <div class="callout">
-  <strong>The Intelligence Readiness Gate</strong><br>
-  Track A isn't just tuning the prompt — it produces evidence about whether the intelligence layer is feasible in-house. Key outputs:
+  <strong>The Intelligence Readiness Assessment</strong><br>
+  Track A produces a clear picture of where the intelligence stands. Key outputs:
   <ul style="margin-bottom: 0;">
-    <li>Priority accuracy trajectory over the 1–2 weeks (improving? plateauing? stuck?)</li>
-    <li>Failure mode breakdown (missing context? wrong categories? bad prioritization?) — tells you whether gaps are solvable with more tuning or are fundamental</li>
+    <li>Priority accuracy trajectory over the full study (improving? plateauing? stuck?)</li>
+    <li>Failure mode breakdown (missing context? wrong categories? bad prioritization? missing cross-thread connections?) — tells you whether gaps are solvable with more tuning or are fundamental</li>
+    <li>Which capabilities are strong and which need focused investment</li>
+    <li>Evidence for which architectural layers are load-bearing vs. which can be deferred</li>
     <li>Honest comparison: what a well-prompted frontier LLM can do today vs. what the product needs</li>
-    <li><strong>Recommendation: build in-house vs. bring in vendor consultation</strong></li>
   </ul>
 </div>
 
-<p><strong>Recruitment criteria for the 5</strong> (each participant is high-value — choose carefully):</p>
+<p><strong>Recruitment criteria for the 5–7 dogfooders</strong> (each participant is high-value — choose carefully):</p>
 <ul>
   <li>Genuine email diversity (not 5 PMs with identical inboxes)</li>
   <li>High daily volume (enough signal for the WoZ to work with)</li>
   <li>Reliable — will actually screenshot and narrate every morning</li>
   <li>Internal credibility — their eventual advocacy carries weight</li>
+  <li>Must fit our target archetype — overwhelmed, high-volume email users</li>
 </ul>
 
-<p>This group rolls off after 1–2 weeks. Their purpose is to calibrate the intelligence and build internal conviction. WoZ learnings get baked into the prototypes the external panel evaluates.</p>
+<p>Internal users that meet our target audience will participate via dScout. This group runs throughout the study — Shadow Inbox as a recurring pulse, with other methods rotated in based on what we're learning. Intelligence learnings get baked into the prototypes the external panel evaluates.</p>
 
 <hr>
 
-<!-- TRACK B -->
-<h3>Track B — Experience Design Exploration</h3>
+<!-- CONVERGENCE: EXPERIENCE PROTOTYPES -->
+<h3>Convergence — Experience Prototypes</h3>
 <p><span class="label">Weeks 3–5</span></p>
 
-<p><strong>Goal:</strong> The 2–3 Gauntlet winners are built as full interactive prototypes. Each is a complete experience that takes deliberate positions across the full design space. These are research-owned, instrumented web apps — the "pre-TestFlight" version.</p>
+<p><strong>Goal:</strong> The 2–3 Gauntlet winners are built as full interactive prototypes, <strong>powered by intelligence we've already calibrated</strong> in Track A. Each is a complete experience that takes deliberate positions across the full design space. These are research-owned, instrumented web apps — the "pre-TestFlight" version.</p>
+
+<p>This is where the two parallel workstreams converge. The Concept Gauntlet determines <em>what to build</em>. Intelligence Calibration determines <em>what powers it</em>. The prototypes don't just look right — they're backed by intelligence we know works.</p>
 
 <h4>Relationship to the Gauntlet</h4>
-<p>The Gauntlet determines which concepts enter Track B <em>and what to emphasize</em>. A concept that scored high on value prop but felt too dense enters with a mandate to solve density. A concept that made sense in the walkthrough but lacked excitement enters with a mandate to sharpen the value prop. The Gauntlet doesn't just select — it refines.</p>
+<p>The Gauntlet determines which concepts enter the prototype phase <em>and what to emphasize</em>. A concept that scored high on value prop but felt too dense enters with a mandate to solve density. A concept that made sense in the walkthrough but lacked excitement enters with a mandate to sharpen the value prop. The Gauntlet doesn't just select — it refines.</p>
 
-<h4>Intelligence Is Pre-Calibrated</h4>
-<p>What we learned from the dogfood WoZ group in Track A gets baked into the prototypes. The external panel never does Shadow Inbox — they experience the refined product directly.</p>
+<h4>Relationship to Intelligence Calibration</h4>
+<p>What we've learned from the ongoing dogfood WoZ group in Track A gets baked into the prototypes. The external panel never does Shadow Inbox — they experience the refined product directly. Track A continues running alongside prototype testing, so intelligence keeps improving even as we test the experience.</p>
+
+<div class="callout-blue">
+  <strong>Why convergence matters:</strong> The two tracks interact in ways you can't predict from either one alone. People may accept a denser surface when they trust the AI is getting priorities right. The same AI accuracy might feel trustworthy in a "Chief of Staff" frame but anxiety-inducing in a "Morning Brief" frame. A "you're all caught up" signal only works if the system actually caught everything. These interactions only emerge when concept direction meets calibrated intelligence.
+</div>
 
 <h4>Design Dimensions Under Exploration</h4>
 <p>Each prototype takes a deliberate position on each dimension:</p>
@@ -464,12 +616,11 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
 
 <hr>
 
-<!-- CONVERGENCE -->
-<h3>Convergence</h3>
-<p>WoZ learnings from Track A are baked into Track B prototypes before the external panel sees them. Cross-track insights emerge through the prototype testing itself: Do people tolerate less detail when intelligence is accurate? Does trust build faster in certain frames? Which completion signal works best when triage is actually reliable?</p>
+<!-- QUALITY GATE -->
+<h3>Quality Gate</h3>
 
 <div class="callout-blue">
-  <strong>Quality gate:</strong> If Track A calibration isn't sufficient by Week 3, prototypes ship with curated data instead of WoZ-informed data. Track B is not blocked.
+  <strong>If intelligence calibration isn't sufficient by Week 3,</strong> prototypes ship with curated data instead of WoZ-informed data. The experience prototypes are not blocked. Intelligence calibration continues in parallel and findings feed into the readiness assessment regardless.
 </div>
 
 <hr>
@@ -481,10 +632,10 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
 <table>
   <tr><th>Group</th><th>Who</th><th>When</th><th>Purpose</th></tr>
   <tr>
-    <td><strong>Internal dogfood (5)</strong></td>
-    <td>Handpicked Yahoo Mail team. Diverse email lives — parents, managers, ICs, subscription-heavy.</td>
-    <td>Weeks 1–3 (Gauntlet reactions + Shadow Inbox)</td>
-    <td>Calibrate intelligence, test concepts, build internal advocacy</td>
+    <td><strong>Internal dogfooders (5–7)</strong></td>
+    <td>Handpicked from target audience. Diverse email lives — parents, managers, ICs, subscription-heavy. Must fit overwhelmed archetype.</td>
+    <td>Weeks 1–5 (Gauntlet reactions + ongoing Intelligence Calibration)</td>
+    <td>Calibrate intelligence via 6-method toolkit, test concepts, build internal advocacy</td>
   </tr>
   <tr>
     <td><strong>External dScout panel (5–8)</strong></td>
@@ -578,8 +729,8 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
   </tr>
   <tr>
     <td><strong>P1</strong></td>
-    <td>WoZ prompt template system</td>
-    <td>Structured input (email list, priorities, life context) &rarr; structured JSON output (prioritized emails with micro-briefs, categories, incoming/upcoming, completion signal, reasoning layer). Parameter-driven treatment variations. Stress-tested Week 1. Target: &le;10 min/participant.</td>
+    <td>WoZ prompt template system + method toolkit</td>
+    <td>Structured input (email list, priorities, life context) &rarr; structured JSON output (prioritized emails with micro-briefs, categories, incoming/upcoming, completion signal, reasoning layer). Parameter-driven treatment variations. Supports 6-method toolkit: Shadow Inbox templates, Side-by-Side variant generation, Display Variation rendering, Real-Time Walkthrough materials, Build-Your-Own Briefing exercise framework, Stress Test scenario bank. Stress-tested Week 1. Target: &le;10 min/participant for Shadow Inbox.</td>
   </tr>
   <tr>
     <td><strong>P2</strong></td>
@@ -616,22 +767,32 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
   <li>Post-package: real-inbox comparison, replacement viability, single biggest change needed</li>
 </ul>
 
-<h3>Track A — Morning Input</h3>
+<h3>Intelligence Calibration — Shadow Inbox (Recurring)</h3>
+<p><strong>Morning Input:</strong></p>
 <ul>
   <li>Screenshot capture of real inbox</li>
   <li>Voice narration: "Walk me through what's here. What's important? What's coming up?"</li>
   <li>Structured fields: top 3 priorities, upcoming this week, what you're worried about missing</li>
 </ul>
-
-<h3>Track A — Afternoon Reaction</h3>
+<p><strong>Afternoon Reaction:</strong></p>
 <ul>
   <li>Shadow Inbox view presented</li>
   <li>Priority accuracy (scale + open-ended)</li>
   <li>Misses (Y/N + what was missed)</li>
   <li>Miscategorization (Y/N + what was wrong)</li>
   <li>Completion confidence (scale)</li>
+  <li>"Does it feel like it knows you?" (scale + open-ended)</li>
   <li>Real-inbox comparison (open-ended)</li>
   <li>Optional voice narration</li>
+</ul>
+
+<h3>Intelligence Calibration — Rotational Methods</h3>
+<ul>
+  <li><strong>Side-by-Side Comparison:</strong> 2–3 variants presented together. "Which one got it right? Which one feels like it knows you? Which would you trust every morning?" Forced rank + open narration.</li>
+  <li><strong>Display Variation:</strong> Same intelligence, different presentation. Reaction to structure, length, and tone. "Is this about the intelligence being wrong or the display not working?"</li>
+  <li><strong>Real-Time Walkthrough:</strong> Live moderated session. Line-by-line annotation of Shadow Inbox output. Captures invisible context and the <em>why</em> behind failures.</li>
+  <li><strong>Build-Your-Own Briefing:</strong> Structured exercise with raw inbox data. Participant creates their ideal view. Captures mental model and priority logic. Used early (baseline) and again after AI exposure.</li>
+  <li><strong>Stress Tests:</strong> Flagged when a participant has a naturally unusual day (high volume, long absence, mixed urgency). Curated scenarios as backup.</li>
 </ul>
 
 <h3>Track B — Express Mission</h3>
@@ -656,7 +817,7 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
     <th>Week 5</th>
   </tr>
   <tr>
-    <td><strong>Gauntlet</strong></td>
+    <td><strong>Concept Gauntlet</strong></td>
     <td>Build 8 stimulus pieces (4 landing pages + 4 walkthroughs)</td>
     <td>dScout Express runs. Synthesize. Refinement briefs for advancing concepts.</td>
     <td>—</td>
@@ -664,18 +825,18 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
     <td>—</td>
   </tr>
   <tr>
-    <td><strong>Track A</strong></td>
-    <td>Build + stress-test WoZ prompt template. Recruit 5 dogfooders.</td>
-    <td>Begin daily WoZ cycles (weekdays, 5 participants).</td>
-    <td>WoZ continues. Treatment variations. Roll off. Intelligence readiness assessment.</td>
-    <td>—</td>
-    <td>—</td>
+    <td><strong>Intelligence Calibration</strong></td>
+    <td>Build + stress-test WoZ prompt template. Recruit 5–7 dogfooders. Begin Shadow Inbox + Build-Your-Own Briefing (baseline).</td>
+    <td>Daily Shadow Inbox cycles. Side-by-Side Comparisons to test prompt strategies. Real-Time Walkthroughs as needed.</td>
+    <td>Display Variation Testing (intelligence stabilizing). Treatment variations. Stress Tests (opportunistic).</td>
+    <td>Ongoing calibration. Methods rotate based on learning gaps. Findings feed into prototype refinement.</td>
+    <td>Final calibration rounds. Intelligence readiness assessment.</td>
   </tr>
   <tr>
-    <td><strong>Track B</strong></td>
+    <td><strong>Experience Prototypes</strong></td>
     <td>—</td>
     <td>—</td>
-    <td>Build prototypes from Gauntlet winners + WoZ learnings. Instrument for analytics.</td>
+    <td>Build prototypes from Gauntlet winners + intelligence learnings. Instrument for analytics.</td>
     <td>dScout panel testing + moderated labs.</td>
     <td>Refine top 2. Synthesize. Conviction deck.</td>
   </tr>
@@ -695,7 +856,7 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
 
 <div class="callout">
   <strong>2. Intelligence Readiness Assessment</strong><br>
-  "Can our team build this, or do we need vendor help?" Go/no-go on capability with accuracy trajectory, failure mode analysis, and a clear build-vs-vendor recommendation.
+  "Here's where the intelligence stands, what's strong, and where to focus investment." Accuracy trajectory, failure mode analysis, architectural layer evidence, and a clear picture of which capabilities need focused effort.
 </div>
 
 <p>The prototype itself is a deliverable for eng — a working reference implementation with an analytics schema, not a Figma file to interpret.</p>
