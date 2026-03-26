@@ -39,38 +39,40 @@ These questions are interdependent. A great experience with bad intelligence fee
 
 ---
 
-#### Track A: Intelligence Calibration (Weeks 2–3)
-**Purpose:** Tune the Life Graph's judgment quality using real email data from a small internal dogfood group. This is a calibration sprint, not an extended study.
+#### Track A: Intelligence Calibration (Ongoing)
+**Purpose:** Calibrate the Life Graph's judgment quality through ongoing research with 5–7 dedicated dogfooders who fit our target audience — overwhelmed, high-volume email users whose inboxes have gotten away from them.
 
-**5 internal dogfooders, weekdays only, 1–2 weeks.**
+**The 7 key questions we need to answer:**
+1. Does the system know what matters to *this person* — not just what's objectively urgent?
+2. How well does it connect dots across messages to surface the real picture?
+3. Does the "since you were last here" summary create confidence nothing was missed?
+4. Can we get meaningfully better over time, or does accuracy plateau?
+5. Does it feel like it knows you, or like a machine that read your email?
+6. How gracefully does it handle what it gets wrong?
+7. Does quality hold up across different visit frequencies and volumes?
 
-**How it works — the Shadow Inbox:**
-1. Participant screenshots their real inbox each morning (~5 min)
-2. Matt feeds input through a Claude prompt template that simulates what the Home Surface *would have shown* (~8–15 min per participant)
-3. Participant receives their personalized Shadow Inbox view within 1–2 hours
-4. Participant rates it that afternoon: priorities right? Anything missed? (~3–5 min)
+**Method toolkit** (pick 2–3 per week based on what we need, not a fixed script):
+- **Shadow Inbox** — create the ideal AI output, participant rates accuracy. Recurring pulse check.
+- **Side-by-Side Comparison** — 2–3 different AI outputs for the same inbox. Which approach wins?
+- **Display Variations** — same intelligence, different presentations. Separate AI quality from display quality.
+- **Real-Time Walkthrough** — walk through output together live. Surfaces the *why* behind failures.
+- **Build-Your-Own Briefing** — participant creates their ideal version. Establishes the gold standard.
+- **Stress Tests** — hard days: 60 emails after a weekend, one urgent item buried in 30 routine ones.
 
-**What we vary** (within-subjects, on select days):
-- How much the system decides for you (agency)
-- How "done" is signaled (completion model)
-- How much detail is shown (density)
-- Morning-focused vs. catch-up vs. unified (temporal framing)
+**What we're targeting:** ~80% priority accuracy, plus qualitative signal on personalization, warmth, aggregation quality, and temporal sensitivity.
 
-**What we're targeting:** ~80% priority accuracy — system's top priorities match participant's self-reported top priorities.
-
-**The intelligence readiness gate:** Track A isn't just tuning the prompt — it's producing evidence about whether the intelligence layer is feasible in-house. Key outputs:
+**The intelligence readiness gate:** Track A produces clear evidence of where the intelligence stands and what it needs:
 - Priority accuracy trajectory (improving? plateauing? stuck?)
-- Failure mode breakdown (missing context? wrong categories? bad prioritization?) — tells you if gaps are solvable with more tuning or fundamental
-- Honest assessment: what a well-prompted frontier LLM can do today vs. what the product needs
-- **Recommendation: build in-house vs. bring in vendor consultation**
+- Failure mode breakdown — which capabilities are strong, which need focused investment
+- Clear picture of what's working and where to double down
 
-**Who to recruit — the 5 matter a lot:**
-- Genuine email diversity (not 5 PMs with identical inboxes)
-- High daily volume (enough signal for WoZ to work with)
-- Reliable — will actually screenshot and narrate every morning
+**Who to recruit — the 5–7 matter a lot:**
+- Fits the target audience: high volume, email chaos, mix of personal + professional
+- Genuine email diversity across the group (not 5 PMs with identical inboxes)
+- Reliable — will actually show up and engage every day
 - Internal credibility — their eventual advocacy carries weight
 
-**This group rolls off after 1–2 weeks.** Their purpose is to calibrate the intelligence and build internal conviction. They are not the evaluation panel for the final prototypes.
+**This is ongoing research.** Learnings continuously inform the intelligence approach and get baked into the prototypes that the external panel evaluates.
 
 ---
 

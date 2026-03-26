@@ -104,43 +104,90 @@ How much triage agency wanted? Varies by email type, trust level, tenure. Defaul
 
 ---
 
-### Track A — Intelligence Calibration (Shadow Inbox + WoZ)
+### Track A — Intelligence Calibration
 
-**Goal**: Calibrate Life Graph judgment quality through daily WoZ simulation. This is a calibration sprint (1-2 weeks), not an extended study.
+**Goal**: Calibrate Life Graph judgment quality through ongoing real-inbox research with dedicated dogfooders who fit our target audience.
 
-**Method**: The Shadow Inbox — participants keep real inbox, receive daily simulated Home Surface view for comparison.
+**Participants**: 5-7 dedicated dogfooders who match our target archetype — overwhelmed, high-volume email users whose inboxes have gotten away from them. Weekday cadence.
 
-**Participants**: 5 internal dogfooders, weekdays only.
-
-**Recruitment criteria for the 5** (each participant is high-value — choose carefully):
-- Genuine email diversity (not 5 PMs with identical inboxes)
-- High daily volume (enough signal for WoZ to work with)
-- Reliable — will actually screenshot and narrate every morning
+**Recruitment criteria** (each participant is high-value — choose carefully):
+- Fits the target audience: high volume, email chaos, mix of personal + professional
+- Genuine email diversity across the group (not 5 PMs with identical inboxes)
+- Reliable — will actually show up and engage every day
 - Internal credibility — their eventual advocacy carries weight
 
-**Daily cycle**:
-1. **Morning input** (participant, ~5 min): dScout diary — screenshots, voice narration, structured priority/upcoming fields
-2. **WoZ processing** (Matt, ~8-15 min/participant): Claude prompt template → simulated output → rendered mockup. Batch all participants after a morning cutoff to minimize context-switching.
-3. **Shadow Inbox delivery** (within 1-2 hours): Personalized view while morning context fresh
-4. **Afternoon reaction** (participant, ~3-5 min): dScout evaluation — accuracy, misses, categorization, completion
+---
 
-**WoZ treatment variations** (within-subjects, varied on select days):
-- **Agency**: Aggressive (handled + receipts) vs. Conservative (everything + priority tiers)
-- **Completion**: Progress indicator vs. affirmative statement vs. countdown vs. no signal
-- **Density**: Full micro-briefs per item vs. category summaries only
-- **Temporal**: Morning-optimized vs. catch-up vs. unified
+#### The 7 Key Questions
 
-**Metrics**: Priority accuracy (~80% target), miss rate, trust trajectory, completion effectiveness, density preference
+1. **Does the system know what matters to *this person* — not just what's objectively urgent?** The permission slip due Friday matters more to the busy parent than the LinkedIn notification, even though both are "time-sensitive." Can it distinguish personal importance from generic urgency?
 
-**Intelligence readiness gate**: Track A isn't just tuning the prompt — it produces evidence about whether the intelligence layer is feasible in-house. Key outputs:
-- Priority accuracy trajectory over the 1-2 weeks (improving? plateauing? stuck?)
-- Failure mode breakdown (missing context? wrong categories? bad prioritization?) — determines if gaps are solvable with tuning or fundamental
-- Honest comparison: what a well-prompted frontier LLM can do today vs. what the product needs
-- **Recommendation: build in-house vs. bring in vendor consultation**
+2. **How well does it connect dots across messages?** The contractor email from Monday + the payment reminder from Wednesday + the scheduling email from today = "your kitchen renovation needs three things from you this week." Can it synthesize across messages, or does it treat each email as standalone?
 
-If after 1-2 weeks of daily iteration accuracy is stuck well below threshold, that's the alarm bell for bringing in outside help.
+3. **Does the "since you were last here" summary create confidence that nothing was missed?** Too vague and people don't trust it. Too detailed and it's just another inbox. Can the intelligence produce a summary at the right altitude — complete enough to feel safe, concise enough to feel like relief?
 
-**This group rolls off after 1-2 weeks.** Their purpose is to calibrate the intelligence and build internal conviction. WoZ learnings get baked into the prototypes that the external panel evaluates.
+4. **Can we get meaningfully better over time, or does accuracy plateau?** If Day 1 is 50% and Day 10 is 75% with the curve still rising, we have a path. If Day 10 is 55%, we know exactly where to focus. The trajectory matters more than any single day's score.
+
+5. **Does it feel like it knows you, or like a machine that read your email?** Two systems can be equally accurate but feel completely different. One feels like a trusted assistant who understands your life, the other feels like an algorithm. The difference is in the tone, the small details (calling your kid's school by name vs. "a school-related email").
+
+6. **How gracefully does it handle what it gets wrong?** The system will never be 100%. Does a missed priority feel catastrophic or minor? Does a miscategorized email erode confidence in the whole surface? Confident and wrong is far worse than humble and slightly off.
+
+7. **Does quality hold up across different visit frequencies and volumes?** Checking in after 2 hours with 4 new emails is a different challenge than returning Monday morning to 60 weekend emails. The intelligence needs to scale both directions, and the "since you were last here" framing needs to feel appropriate whether the gap is 90 minutes or 48 hours.
+
+---
+
+#### Learning Areas
+
+**Intelligence Accuracy**: Priority detection, incoming/upcoming separation, urgency vs. importance, miss rate, false alarm rate.
+
+**Context Graph Depth**: Sender knowledge (who is this person to me?), cross-message connections (same project, same life thread), accumulated knowledge over multiple days, cold start vs. Day 5 quality.
+
+**Aggregation & Synthesis**: Summarizing across related messages, category-level summaries, topline brief quality, handling volume spikes (12 emails vs. 60).
+
+**Brief & Display Quality**: Micro-brief length and usefulness, tone (helpful assistant vs. robotic), visual hierarchy clarity, does it feel like a product or a report.
+
+**Prompt & Instruction Tuning**: Which prompt structures produce best results, sensitivity to framing, value of accumulated life context, minimum viable context.
+
+**Temporal Sensitivity**: Different visit frequencies (2 hours vs. overnight vs. weekend), morning vs. evening, deprioritizing passed events, "since you were last here" scaling.
+
+**Personalization & Tone**: Does it feel like it knows *you*, warmth vs. clinical feel, right level of personality, trust-building through language.
+
+**Edge Cases & Failure Modes**: Ambiguous emails, "gray zone" importance, forwarded/shared emails, context the system can't see, graceful vs. confident failure.
+
+---
+
+#### Method Toolkit
+
+Track A uses a flexible toolkit of methods — not a single ossified plan. We pick 2-3 per week based on what we need to learn, and shift as the intelligence evolves.
+
+**Method 1: Shadow Inbox**
+We create the "ideal" version of what the Home Surface would show them, based on their real inbox. They compare it to their actual email and rate accuracy. Best for: measuring accuracy baseline, tracking improvement over time, testing the topline summary. Use throughout as a recurring pulse check.
+
+**Method 2: Side-by-Side Model Comparison**
+Show 2-3 different AI outputs for the *same* inbox snapshot. Different context graph versions, different prompt strategies, different levels of life context. Participant sees them together and judges: which one got it right? Which one feels like it knows you? Best for: choosing between competing intelligence approaches. Use when we have hypotheses about prompt structure or context depth and need a tiebreaker.
+
+**Method 3: Display Variation Testing**
+Same intelligence output, different presentations. Vary structure (category groups vs. priority list vs. narrative), length (one-liners vs. full briefs), tone (warm vs. efficient). Separates intelligence quality from presentation quality — a participant might hate an output because the *display* felt wrong, not because the AI was wrong. Best for: after intelligence stabilizes and we need to nail the presentation layer.
+
+**Method 4: Real-Time Walkthrough & Annotation**
+Show them a Shadow Inbox output and walk through it together, live. They narrate: "This is right... this is wrong... this one matters because you don't know my kid is allergic and this is actually from the allergist, not spam..." The richest signal — surfaces invisible context and the *why* behind failures. Best for: when stuck on accuracy gaps. Even 2-3 sessions can be more illuminating than a week of structured ratings.
+
+**Method 5: Build-Your-Own Briefing**
+Give participants their raw inbox data and ask *them* to create the ideal Home Surface view. What would you prioritize? How would you group these? What would the summary say? Establishes the "gold standard" and reveals mental models — do they think in categories, timelines, or priority tiers? Best for: early baseline before they've seen any AI output, and again after exposure to see if their sense of ideal has shifted.
+
+**Method 6: Stress Test Scenarios**
+Deliberately throw hard days at the system — 60 emails after a weekend, one urgent item buried in 30 routine ones, a day where the most important thing came from a verbal conversation the system can't see. The system probably works fine on an average Tuesday — the question is what happens on hard days, when users need it most. Best for: mid-to-late sprint, and opportunistically whenever a participant has a naturally unusual day.
+
+---
+
+#### Intelligence Readiness Gate
+
+Track A produces clear evidence of where the intelligence stands and what it needs to reach product quality. Key outputs:
+- Priority accuracy trajectory (improving? plateauing? stuck?)
+- Failure mode breakdown (missing context? wrong categories? bad prioritization?) — determines if gaps are solvable with tuning or require a different approach
+- Clear picture of which capabilities are strong and which need focused investment
+
+This is ongoing research — learnings continuously inform the intelligence approach and get baked into the prototypes that the external panel evaluates.
 
 ---
 

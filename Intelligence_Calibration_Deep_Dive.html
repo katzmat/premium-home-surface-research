@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track A — Intelligence Calibration Deep Dive</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+    padding: 32px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .page-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .page-header h1 {
+    font-size: 24px;
+    font-weight: 800;
+  }
+
+  .page-header .badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: #4a7bd4;
+    color: #fff;
+  }
+
+  .page-subtitle {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+
+  .page-intro {
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.6;
+    max-width: 850px;
+    margin-bottom: 24px;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #2d5aa0;
+    margin-top: 28px;
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #e0e8f5;
+  }
+
+  /* QUESTIONS GRID */
+  .questions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .question-card {
+    background: #f0f4ff;
+    border: 1px solid #d4dff0;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .question-num {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    background: #4a7bd4;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .question-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #1a1a1a;
+    display: inline;
+    vertical-align: middle;
+  }
+
+  .question-detail {
+    font-size: 11.5px;
+    color: #555;
+    line-height: 1.5;
+    margin-top: 6px;
+  }
+
+  .question-card-wide {
+    grid-column: 1 / -1;
+  }
+
+  /* LEARNING AREAS */
+  .areas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 8px;
+  }
+
+  .area-card {
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 10px 12px;
+  }
+
+  .area-card h4 {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2d5aa0;
+    margin-bottom: 5px;
+  }
+
+  .area-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .area-card li {
+    font-size: 10.5px;
+    color: #555;
+    line-height: 1.4;
+    padding: 2px 0;
+    padding-left: 10px;
+    position: relative;
+  }
+
+  .area-card li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    color: #aaa;
+    font-weight: 700;
+  }
+
+  /* PAGE BREAK */
+  .page-break {
+    border-top: 3px solid #1a1a1a;
+    margin: 32px 0 28px 0;
+    page-break-after: always;
+  }
+
+  /* METHOD TOOLKIT */
+  .methods-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .method-card {
+    border: 1.5px solid #d4dff0;
+    border-radius: 8px;
+    padding: 14px 16px;
+    position: relative;
+  }
+
+  .method-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .method-num {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    background: #4a7bd4;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .method-name {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  .method-desc {
+    font-size: 11.5px;
+    color: #444;
+    line-height: 1.55;
+    margin-bottom: 8px;
+  }
+
+  .method-meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .method-meta-item {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .method-meta-label {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #2d5aa0;
+  }
+
+  .method-meta-value {
+    color: #666;
+  }
+
+  /* TIMELINE */
+  .timeline-bar {
+    display: flex;
+    gap: 0;
+    margin-top: 8px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #d4dff0;
+  }
+
+  .timeline-segment {
+    padding: 10px 14px;
+    flex: 1;
+    border-right: 1px solid #d4dff0;
+  }
+
+  .timeline-segment:last-child {
+    border-right: none;
+  }
+
+  .timeline-segment h4 {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .timeline-segment p {
+    font-size: 10.5px;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  .tl-setup {
+    background: #f8f8f8;
+  }
+  .tl-setup h4 { color: #888; }
+
+  .tl-baseline {
+    background: #f0f4ff;
+  }
+  .tl-baseline h4 { color: #2d5aa0; }
+
+  .tl-iterate {
+    background: #e8eeff;
+  }
+  .tl-iterate h4 { color: #2d5aa0; }
+
+  .tl-assess {
+    background: #dce4f8;
+  }
+  .tl-assess h4 { color: #1a3d7a; }
+
+  /* GATE BOX */
+  .gate-box {
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 16px;
+  }
+
+  .gate-box h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .gate-box p {
+    font-size: 12px;
+    color: #bbb;
+    line-height: 1.55;
+    margin-bottom: 6px;
+  }
+
+  .gate-outcomes {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .gate-outcome {
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 10px 12px;
+  }
+
+  .gate-outcome h4 {
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .gate-outcome p {
+    font-size: 10.5px;
+    color: #999;
+    margin: 0;
+  }
+
+  .gate-good h4 { color: #6dd49a; }
+  .gate-mid h4 { color: #d4c46d; }
+  .gate-alarm h4 { color: #d46d6d; }
+
+  /* APPROACH NOTE */
+  .approach-note {
+    background: #fef9ef;
+    border: 1px solid #e8d5a8;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 16px;
+  }
+
+  .approach-note h4 {
+    font-size: 11px;
+    font-weight: 700;
+    color: #8a6d1b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .approach-note p {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.55;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+
+<div class="page-header">
+  <span class="badge">Track A</span>
+  <h1>Intelligence Calibration</h1>
+</div>
+<div class="page-subtitle">Yahoo Mail Premium &middot; Home Surface Research &middot; Weeks 2–3</div>
+<p class="page-intro">The Home Surface depends on AI that understands your email life — what's urgent, what's upcoming, what can wait. Before we can test the full experience, we need to know if the intelligence behind it is good enough. This track is an ongoing research effort with 5–7 dedicated dogfooders who fit our target audience — overwhelmed, high-volume email users whose inboxes have gotten away from them. Using their real inboxes, we calibrate the intelligence, identify where it breaks down, and build confidence in what works.</p>
+
+<!-- 7 KEY QUESTIONS -->
+<div class="section-header">The 7 Questions We Need to Answer</div>
+
+<div class="questions-grid">
+  <div class="question-card">
+    <span class="question-num">1</span>
+    <span class="question-title">Personal importance vs. generic urgency</span>
+    <p class="question-detail">The permission slip due Friday matters more to a parent than the LinkedIn notification, even though both are "time-sensitive." Can the system distinguish what matters to <em>this specific person</em> from what's objectively urgent?</p>
+  </div>
+
+  <div class="question-card">
+    <span class="question-num">2</span>
+    <span class="question-title">Connecting dots across messages</span>
+    <p class="question-detail">The contractor email Monday + payment reminder Wednesday + scheduling email today = "your kitchen renovation needs three things from you this week." Can it synthesize related threads, or does it treat every email as standalone?</p>
+  </div>
+
+  <div class="question-card">
+    <span class="question-num">3</span>
+    <span class="question-title">The "since you were last here" summary</span>
+    <p class="question-detail">Too vague and people don't trust it. Too detailed and it's just another inbox. Can the intelligence find the right altitude — complete enough to feel safe, concise enough to feel like relief?</p>
+  </div>
+
+  <div class="question-card">
+    <span class="question-num">4</span>
+    <span class="question-title">Improvement trajectory over time</span>
+    <p class="question-detail">If Day 1 is 50% accuracy and Day 10 is 75% with the curve still rising, we have a path. If Day 10 is 55%, we know exactly where to focus. The trajectory matters more than any single day's score — it tells us what's working, what needs rethinking, and how fast we're converging.</p>
+  </div>
+
+  <div class="question-card">
+    <span class="question-num">5</span>
+    <span class="question-title">Does it feel like it knows you?</span>
+    <p class="question-detail">Two systems can be equally accurate but feel completely different. One feels like a trusted assistant who understands your life. The other feels like an algorithm. The difference is in tone, warmth, and small details — calling your kid's school by name vs. "a school-related email."</p>
+  </div>
+
+  <div class="question-card">
+    <span class="question-num">6</span>
+    <span class="question-title">Graceful failure</span>
+    <p class="question-detail">The system will never be 100%. Does a missed priority feel catastrophic or minor? Does one bad call erode confidence in the whole surface? Confident and wrong is far worse than humble and slightly off. How does it handle its own uncertainty?</p>
+  </div>
+
+  <div class="question-card question-card-wide">
+    <span class="question-num">7</span>
+    <span class="question-title">Quality across frequencies and volumes</span>
+    <p class="question-detail">Checking in after 2 hours with 4 new emails is a fundamentally different challenge than returning Monday morning to 60 weekend emails. The intelligence needs to scale both directions — concise when there's little, comprehensive when there's a lot — and the "since you were last here" framing needs to feel appropriate whether the gap is 90 minutes or 48 hours.</p>
+  </div>
+</div>
+
+<!-- LEARNING AREAS -->
+<div class="section-header">What We're Measuring — 8 Learning Areas</div>
+
+<div class="areas-grid">
+  <div class="area-card">
+    <h4>Intelligence Accuracy</h4>
+    <ul>
+      <li>Priority detection</li>
+      <li>Incoming vs. upcoming separation</li>
+      <li>Urgency vs. importance</li>
+      <li>Miss rate &amp; false alarms</li>
+    </ul>
+  </div>
+  <div class="area-card">
+    <h4>Context Graph Depth</h4>
+    <ul>
+      <li>Sender knowledge</li>
+      <li>Cross-message connections</li>
+      <li>Life thread recognition</li>
+      <li>Cold start vs. Day 5 quality</li>
+    </ul>
+  </div>
+  <div class="area-card">
+    <h4>Aggregation &amp; Synthesis</h4>
+    <ul>
+      <li>Multi-message summaries</li>
+      <li>Related email roll-ups</li>
+      <li>Topline brief quality</li>
+      <li>Volume spike handling</li>
+    </ul>
+  </div>
+  <div class="area-card">
+    <h4>Brief &amp; Display Quality</h4>
+    <ul>
+      <li>Micro-brief length &amp; usefulness</li>
+      <li>Tone (helpful vs. robotic)</li>
+      <li>Visual hierarchy clarity</li>
+      <li>Product feel vs. report feel</li>
+    </ul>
+  </div>
+  <div class="area-card">
+    <h4>Prompt Tuning</h4>
+    <ul>
+      <li>Best prompt structures</li>
+      <li>Framing sensitivity</li>
+      <li>Value of accumulated context</li>
+      <li>Minimum viable input</li>
+    </ul>
+  </div>
+  <div class="area-card">
+    <h4>Temporal Sensitivity</h4>
+    <ul>
+      <li>Visit frequency adaptation</li>
+      <li>Morning vs. evening</li>
+      <li>Deprioritizing passed events</li>
+      <li>"Since last visit" scaling</li>
+    </ul>
+  </div>
+  <div class="area-card">
+    <h4>Personalization &amp; Tone</h4>
+    <ul>
+      <li>Feels like it knows <em>you</em></li>
+      <li>Warmth vs. clinical</li>
+      <li>Right level of personality</li>
+      <li>Trust through language</li>
+    </ul>
+  </div>
+  <div class="area-card">
+    <h4>Edge Cases &amp; Failure</h4>
+    <ul>
+      <li>Ambiguous emails</li>
+      <li>"Gray zone" importance</li>
+      <li>Forwarded/shared emails</li>
+      <li>Graceful vs. confident failure</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page-break"></div>
+
+<div class="page-header">
+  <span class="badge">Track A</span>
+  <h1>Method Toolkit</h1>
+</div>
+<div class="page-subtitle">A flexible set of research methods — not a fixed script</div>
+
+<div class="approach-note">
+  <h4>Our approach</h4>
+  <p>Rather than a single rigid daily plan, we use a toolkit of 6 methods and pick 2–3 per week based on what we're learning and where we're stuck. Some methods run throughout (Shadow Inbox as a pulse check). Others are situational (Stress Tests when a hard day naturally occurs, Real-Time Walkthroughs when we need to understand <em>why</em> something failed). This keeps us responsive to reality instead of locked into a plan that may not fit what we're finding.</p>
+</div>
+
+<!-- METHODS -->
+<div class="methods-grid" style="margin-top: 16px;">
+
+  <div class="method-card">
+    <div class="method-card-header">
+      <div class="method-num">1</div>
+      <div class="method-name">Shadow Inbox</div>
+    </div>
+    <div class="method-desc">We create the "ideal" AI-generated version of what the Home Surface would show each participant, based on their real inbox that morning. They receive it within 1–2 hours and rate how well we did — were priorities right? Anything missed? Did the summary feel complete? This is the closest thing to testing the real product without having the real product.</div>
+    <div class="method-meta">
+      <div class="method-meta-item">
+        <span class="method-meta-label">Best for: </span>
+        <span class="method-meta-value">Accuracy baseline, tracking improvement, testing the topline summary</span>
+      </div>
+      <div class="method-meta-item">
+        <span class="method-meta-label">When: </span>
+        <span class="method-meta-value">Throughout — recurring pulse check</span>
+      </div>
+      <div class="method-meta-item">
+        <span class="method-meta-label">Effort: </span>
+        <span class="method-meta-value">~8–15 min/participant (operator) + ~8 min/day (participant)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="method-card">
+    <div class="method-card-header">
+      <div class="method-num">2</div>
+      <div class="method-name">Side-by-Side Model Comparison</div>
+    </div>
+    <div class="method-desc">Show the participant 2–3 different AI outputs for the same inbox snapshot. These might use different context graph versions, different prompt strategies, or different amounts of life context. The participant sees them together and tells us: which one got your priorities right? Which one feels like it actually knows you? Which one would you trust to show you every morning?</div>
+    <div class="method-meta">
+      <div class="method-meta-item">
+        <span class="method-meta-label">Best for: </span>
+        <span class="method-meta-value">Choosing between competing AI approaches, testing warmth vs. accuracy tradeoffs</span>
+      </div>
+      <div class="method-meta-item">
+        <span class="method-meta-label">When: </span>
+        <span class="method-meta-value">When we have hypotheses about prompt structure or context depth and need a tiebreaker</span>
+      </div>
+      <div class="method-meta-item">
+        <span class="method-meta-label">Effort: </span>
+        <span class="method-meta-value">~20 min/participant (operator generates 2–3 variants) + ~10 min (participant)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="method-card">
+    <div class="method-card-header">
+      <div class="method-num">3</div>
+      <div class="method-name">Display Variation Testing</div>
+    </div>
+    <div class="method-desc">Same intelligence output, presented in different ways. We vary the structure (grouped by category vs. ranked by priority vs. woven into a narrative), the length (one-liner per email vs. full micro-brief), and the tone (warm and conversational vs. clean and efficient). This separates whether the participant's reaction is about the <em>intelligence</em> being wrong or the <em>display</em> not working.</div>
+    <div class="method-meta">
+      <div class="method-meta-item">
+        <span class="method-meta-label">Best for: </span>
+        <span class="method-meta-value">Isolating presentation quality from intelligence quality, finding the right density and tone</span>
+      </div>
+      <div class="method-meta-item">
+        <span class="method-meta-label">When: </span>
+        <span class="method-meta-value">After intelligence accuracy stabilizes — so display is the variable, not a confound</span>
+      </div>
+      <div class="method-meta-item">
+        <span class="method-meta-label">Effort: </span>
+        <span class="method-meta-value">~15 min/participant (operator renders variants) + ~10 min (participant)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="method-card">
+    <div class="method-card-header">
+      <div class="method-num">4</div>
+      <div class="method-name">Real-Time Walkthrough &amp; Annotation</div>
+    </div>
+    <div class="method-desc">A live session where we show the participant a Shadow Inbox output and walk through it together. They narrate their reactions in real time: "This is right... this is wrong... you don't know that my kid is allergic and this is actually from the allergist, not spam... this one you nailed, I wouldn't have thought to surface it." This is the richest signal — it surfaces invisible context and the <em>why</em> behind every failure.</div>
+    <div class="method-meta">
+      <div class="method-meta-item">
+        <span class="method-meta-label">Best for: </span>
+        <span class="method-meta-value">Understanding why accuracy fails, surfacing context the AI can't see</span>
+      </div>
+      <div class="method-meta-item">
+        <span class="method-meta-label">When: </span>
+        <span class="method-meta-value">When stuck on accuracy gaps — even 2–3 sessions can be more illuminating than a week of ratings</span>
+      </div>
+      <div class="method-meta-item">
+        <span class="method-meta-label">Effort: </span>
+        <span class="method-meta-value">~20–30 min/session (live, moderated)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="method-card">
+    <div class="method-card-header">
+      <div class="method-num">5</div>
+      <div class="method-name">Build-Your-Own Briefing</div>
+    </div>
+    <div class="method-desc">We give participants their raw inbox data and ask <em>them</em> to create the ideal Home Surface view. What would you prioritize? How would you group these? What would the summary say? This establishes the "gold standard" — what perfect actually looks like for this person — and reveals mental models. Do they think in categories, timelines, or priority tiers? Their ideal becomes the benchmark.</div>
+    <div class="method-meta">
+      <div class="method-meta-item">
+        <span class="method-meta-label">Best for: </span>
+        <span class="method-meta-value">Establishing the target, revealing how people naturally organize their email life</span>
+      </div>
+      <div class="method-meta-item">
+        <span class="method-meta-label">When: </span>
+        <span class="method-meta-value">Early (baseline before AI exposure) and again after — does their ideal shift?</span>
+      </div>
+      <div class="method-meta-item">
+        <span class="method-meta-label">Effort: </span>
+        <span class="method-meta-value">~15–20 min/participant (structured exercise, 1–2 times total)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="method-card">
+    <div class="method-card-header">
+      <div class="method-num">6</div>
+      <div class="method-name">Stress Test Scenarios</div>
+    </div>
+    <div class="method-desc">Deliberately throw hard days at the system. What happens with 60 emails after a long weekend? One genuinely urgent item buried in 30 routine ones? A day where the most important thing came from a verbal conversation the AI can't see? The system probably works fine on an average Tuesday — the question is what happens on hard days, when users need it most and where trust gets built or broken.</div>
+    <div class="method-meta">
+      <div class="method-meta-item">
+        <span class="method-meta-label">Best for: </span>
+        <span class="method-meta-value">Finding the breaking point, understanding failure at the edges</span>
+      </div>
+      <div class="method-meta-item">
+        <span class="method-meta-label">When: </span>
+        <span class="method-meta-value">Mid-to-late sprint, and opportunistically when a participant has a naturally unusual day</span>
+      </div>
+      <div class="method-meta-item">
+        <span class="method-meta-label">Effort: </span>
+        <span class="method-meta-value">~15 min/participant (curated scenario or flagged natural day)</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TIMELINE -->
+<div class="section-header" style="margin-top: 24px;">Timeline — 1 to 2 Weeks</div>
+
+<div class="timeline-bar">
+  <div class="timeline-segment tl-setup">
+    <h4>Week 1 (Pre-Sprint)</h4>
+    <p>Build &amp; stress-test prompt template. Recruit 5 dogfooders. Run Build-Your-Own Briefing as baseline exercise. Establish gold standards.</p>
+  </div>
+  <div class="timeline-segment tl-baseline">
+    <h4>Days 1–3</h4>
+    <p>Shadow Inbox daily to establish accuracy baseline. 1–2 Real-Time Walkthroughs to understand early failure patterns. Begin prompt iteration.</p>
+  </div>
+  <div class="timeline-segment tl-iterate">
+    <h4>Days 4–7</h4>
+    <p>Side-by-Side Comparisons to test competing approaches. Display Variations once intelligence stabilizes. Stress Tests if natural hard days arise. Iterate daily.</p>
+  </div>
+  <div class="timeline-segment tl-assess">
+    <h4>Days 8–10</h4>
+    <p>Final Shadow Inbox runs for trajectory data. Stress Tests on remaining edge cases. Compile accuracy trajectory. Produce readiness assessment.</p>
+  </div>
+</div>
+
+<!-- GATE -->
+<div class="gate-box">
+  <h3>Intelligence Readiness Gate — What We Need to Know</h3>
+  <p>This research produces clear evidence of where the intelligence stands and what it needs to reach product quality. The answer depends on the trajectory, not any single day's score.</p>
+
+  <div class="gate-outcomes">
+    <div class="gate-outcome gate-good">
+      <h4>Green: Trajectory is rising</h4>
+      <p>Accuracy improving steadily. Failure modes are identifiable and fixable. Gaps are tuning problems, not fundamental. Clear path to product-quality intelligence.</p>
+    </div>
+    <div class="gate-outcome gate-mid">
+      <h4>Yellow: Plateau with known gaps</h4>
+      <p>Accuracy decent but stuck. Specific failure modes clear (e.g., cross-message synthesis). We know exactly which capabilities need focused investment to close the gap.</p>
+    </div>
+    <div class="gate-outcome gate-alarm">
+      <h4>Red: Plateau well below threshold</h4>
+      <p>Accuracy stuck low. Failure modes are broad or fundamental. Requires a significant rethink of the intelligence approach — different architecture, more context sources, or different model strategy.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intelligence Calibration — At a Glance</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+    padding: 28px 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .badge {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: #4a7bd4;
+    color: #fff;
+    position: relative;
+    top: -1px;
+  }
+
+  h1 {
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  .header-right {
+    font-size: 10px;
+    color: #999;
+    text-align: right;
+    line-height: 1.4;
+  }
+
+  .intro {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.55;
+    margin: 6px 0 18px 0;
+    max-width: 780px;
+  }
+
+  /* MAIN GRID */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 14px;
+  }
+
+  /* QUESTIONS COLUMN */
+  .questions-panel {
+    grid-row: 1 / 3;
+  }
+
+  .panel-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #2d5aa0;
+    margin-bottom: 8px;
+  }
+
+  .q-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .q-item {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    background: #f0f4ff;
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+
+  .q-num {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    background: #4a7bd4;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  .q-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.4;
+  }
+
+  .q-sub {
+    font-weight: 400;
+    color: #666;
+  }
+
+  /* TOOLKIT */
+  .toolkit-panel {
+    grid-row: 1 / 2;
+  }
+
+  .tool-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tool-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+    background: #fafafa;
+  }
+
+  .tool-icon {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 4px;
+    background: #4a7bd4;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .tool-name {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  .tool-when {
+    font-size: 9px;
+    color: #999;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* HOW IT WORKS */
+  .how-panel {
+    grid-row: 2 / 3;
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .how-steps {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .how-step {
+    flex: 1;
+    background: #fff;
+    border-radius: 5px;
+    padding: 8px 10px;
+    text-align: center;
+    border: 1px solid #e8e8e8;
+  }
+
+  .how-step-num {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 50%;
+    background: #4a7bd4;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .how-step-title {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+
+  .how-step-detail {
+    font-size: 9px;
+    color: #888;
+    line-height: 1.3;
+  }
+
+  .how-arrow {
+    display: flex;
+    align-items: center;
+    color: #ccc;
+    font-size: 14px;
+    padding: 0 2px;
+  }
+
+  /* LEARNING AREAS */
+  .areas-panel {
+    grid-column: 1 / -1;
+  }
+
+  .areas-row {
+    display: flex;
+    gap: 6px;
+  }
+
+  .area-chip {
+    flex: 1;
+    background: #f0f4ff;
+    border-radius: 5px;
+    padding: 8px 10px;
+    text-align: center;
+  }
+
+  .area-chip-title {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #2d5aa0;
+    margin-bottom: 3px;
+  }
+
+  .area-chip-items {
+    font-size: 8.5px;
+    color: #777;
+    line-height: 1.35;
+  }
+
+  /* GATE */
+  .gate-bar {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1.5px solid #333;
+  }
+
+  .gate-segment {
+    flex: 1;
+    padding: 10px 12px;
+    text-align: center;
+  }
+
+  .gate-segment h4 {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 3px;
+  }
+
+  .gate-segment p {
+    font-size: 9px;
+    line-height: 1.35;
+  }
+
+  .gate-green {
+    background: #1a2e1a;
+    color: #fff;
+  }
+  .gate-green h4 { color: #6dd49a; }
+  .gate-green p { color: #aadbb8; }
+
+  .gate-yellow {
+    background: #2e2a1a;
+    color: #fff;
+  }
+  .gate-yellow h4 { color: #d4c46d; }
+  .gate-yellow p { color: #c4b888; }
+
+  .gate-red {
+    background: #2e1a1a;
+    color: #fff;
+  }
+  .gate-red h4 { color: #d46d6d; }
+  .gate-red p { color: #c49090; }
+
+  .gate-label {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 110px;
+  }
+
+  .gate-label h3 {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* PARTICIPANTS */
+  .participants-bar {
+    grid-column: 1 / -1;
+    background: #fef9ef;
+    border: 1px solid #e8d5a8;
+    border-radius: 6px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .participants-bar .pb-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #8a6d1b;
+    white-space: nowrap;
+  }
+
+  .participants-bar .pb-items {
+    display: flex;
+    gap: 16px;
+    font-size: 10px;
+    color: #555;
+  }
+
+  .participants-bar .pb-items span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .pb-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #d4a843;
+    display: inline-block;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <span class="badge">Track A</span>
+    <h1>Intelligence Calibration</h1>
+  </div>
+  <div class="header-right">
+    Yahoo Mail Premium<br>Home Surface Research
+  </div>
+</div>
+
+<p class="intro">Can the AI understand your email life well enough to replace the inbox? Ongoing research with 5–7 dedicated dogfooders from our target audience, using a flexible toolkit of methods to calibrate the intelligence, find where it breaks, and build confidence in what works.</p>
+
+<!-- PARTICIPANTS BAR -->
+<div style="margin-bottom: 14px;">
+  <div class="participants-bar">
+    <div class="pb-label">Dogfooders</div>
+    <div class="pb-items">
+      <span><span class="pb-dot"></span> 5–7 from target audience</span>
+      <span><span class="pb-dot"></span> High-volume, overwhelmed email users</span>
+      <span><span class="pb-dot"></span> Diverse email lives</span>
+      <span><span class="pb-dot"></span> Weekday cadence, ongoing</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="main-grid">
+
+  <!-- LEFT: 7 QUESTIONS -->
+  <div class="questions-panel">
+    <div class="panel-label">7 Key Questions</div>
+    <div class="q-list">
+      <div class="q-item">
+        <div class="q-num">1</div>
+        <div class="q-text">Personal importance vs. generic urgency <span class="q-sub">— does it know what matters to <em>this</em> person?</span></div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">2</div>
+        <div class="q-text">Connecting dots across messages <span class="q-sub">— can it see the renovation, not just 3 separate emails?</span></div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">3</div>
+        <div class="q-text">"Since you were last here" quality <span class="q-sub">— right altitude? Complete but concise?</span></div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">4</div>
+        <div class="q-text">Improvement trajectory <span class="q-sub">— getting better over time, or plateauing?</span></div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">5</div>
+        <div class="q-text">Feels like it knows you <span class="q-sub">— trusted assistant or algorithm?</span></div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">6</div>
+        <div class="q-text">Graceful failure <span class="q-sub">— when it's wrong, is it catastrophic or forgivable?</span></div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">7</div>
+        <div class="q-text">Scales across frequencies <span class="q-sub">— 2 hours away vs. 48 hours, 4 emails vs. 60?</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT TOP: TOOLKIT -->
+  <div class="toolkit-panel">
+    <div class="panel-label">Method Toolkit <span style="font-weight:400; color:#999;">— pick 2–3 per week based on need</span></div>
+    <div class="tool-list">
+      <div class="tool-item">
+        <div class="tool-icon">1</div>
+        <div>
+          <div class="tool-name">Shadow Inbox</div>
+          <div style="font-size:9px; color:#888;">Create ideal AI output from real inbox, participant rates accuracy</div>
+        </div>
+        <div class="tool-when">Throughout</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-icon">2</div>
+        <div>
+          <div class="tool-name">Side-by-Side Comparison</div>
+          <div style="font-size:9px; color:#888;">2–3 AI variants for same inbox — which wins?</div>
+        </div>
+        <div class="tool-when">Competing hypotheses</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-icon">3</div>
+        <div>
+          <div class="tool-name">Display Variations</div>
+          <div style="font-size:9px; color:#888;">Same intelligence, different presentation — isolate display from AI quality</div>
+        </div>
+        <div class="tool-when">After AI stabilizes</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-icon">4</div>
+        <div>
+          <div class="tool-name">Real-Time Walkthrough</div>
+          <div style="font-size:9px; color:#888;">Live annotation — surfaces the <em>why</em> behind failures</div>
+        </div>
+        <div class="tool-when">When stuck</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-icon">5</div>
+        <div>
+          <div class="tool-name">Build-Your-Own Briefing</div>
+          <div style="font-size:9px; color:#888;">Participant creates ideal version — establishes gold standard</div>
+        </div>
+        <div class="tool-when">Early baseline</div>
+      </div>
+      <div class="tool-item">
+        <div class="tool-icon">6</div>
+        <div>
+          <div class="tool-name">Stress Tests</div>
+          <div style="font-size:9px; color:#888;">Hard days: 60 emails, buried urgency, invisible context</div>
+        </div>
+        <div class="tool-when">Opportunistic</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT BOTTOM: HOW IT WORKS -->
+  <div class="how-panel">
+    <div class="panel-label">Core Daily Loop (Shadow Inbox)</div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-num">1</div>
+        <span class="how-step-title">Morning</span>
+        <span class="how-step-detail">Participant screenshots inbox, narrates priorities</span>
+      </div>
+      <div class="how-arrow">&rarr;</div>
+      <div class="how-step">
+        <div class="how-step-num">2</div>
+        <span class="how-step-title">Mid-Morning</span>
+        <span class="how-step-detail">AI simulates what Home Surface would show</span>
+      </div>
+      <div class="how-arrow">&rarr;</div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
+        <span class="how-step-title">Before Lunch</span>
+        <span class="how-step-detail">Participant receives personalized Shadow Inbox</span>
+      </div>
+      <div class="how-arrow">&rarr;</div>
+      <div class="how-step">
+        <div class="how-step-num">4</div>
+        <span class="how-step-title">Afternoon</span>
+        <span class="how-step-detail">Rates accuracy, flags misses, reacts to presentation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEARNING AREAS -->
+  <div class="areas-panel">
+    <div class="panel-label">8 Learning Areas</div>
+    <div class="areas-row">
+      <div class="area-chip">
+        <div class="area-chip-title">Accuracy</div>
+        <div class="area-chip-items">Priorities, incoming vs.<br>upcoming, miss rate</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-title">Context Depth</div>
+        <div class="area-chip-items">Sender knowledge,<br>life thread recognition</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-title">Aggregation</div>
+        <div class="area-chip-items">Cross-message synthesis,<br>topline brief quality</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-title">Brief Quality</div>
+        <div class="area-chip-items">Length, usefulness,<br>tone, hierarchy</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-title">Prompt Tuning</div>
+        <div class="area-chip-items">Best structures,<br>minimum context</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-title">Temporal</div>
+        <div class="area-chip-items">Visit frequency,<br>morning vs. evening</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-title">Personalization</div>
+        <div class="area-chip-items">Warmth, feels like<br>it knows you</div>
+      </div>
+      <div class="area-chip">
+        <div class="area-chip-title">Edge Cases</div>
+        <div class="area-chip-items">Ambiguity, gray zone,<br>graceful failure</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- READINESS GATE -->
+  <div class="gate-bar">
+    <div class="gate-label">
+      <h3>Readiness<br>Gate</h3>
+    </div>
+    <div class="gate-segment gate-green">
+      <h4>Rising</h4>
+      <p>Accuracy improving. Gaps are tunable. Clear path forward.</p>
+    </div>
+    <div class="gate-segment gate-yellow">
+      <h4>Plateau + Known Gaps</h4>
+      <p>Decent but stuck. Specific areas need focused investment.</p>
+    </div>
+    <div class="gate-segment gate-red">
+      <h4>Stuck Below Threshold</h4>
+      <p>Broad gaps. Needs a different approach or architecture.</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

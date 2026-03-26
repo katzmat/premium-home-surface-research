@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Surface Research Flow</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+    padding: 36px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .header p {
+    font-size: 12px;
+    color: #888;
+  }
+
+  /* FLOW LAYOUT */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+  }
+
+  /* ESTABLISHED GROUND */
+  .established {
+    width: 100%;
+    background: #f0f0f0;
+    border: 1px solid #d0d0d0;
+    border-radius: 10px;
+    padding: 16px 24px;
+    margin-bottom: 0;
+  }
+
+  .established h2 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+
+  .principles {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .principle {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 11.5px;
+    font-weight: 500;
+    flex: 1;
+    min-width: 170px;
+    line-height: 1.4;
+  }
+
+  .principle strong {
+    display: block;
+    font-size: 11px;
+    color: #888;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  /* ARROWS */
+  .arrow-down {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 0;
+  }
+
+  .arrow-down .line {
+    width: 2px;
+    height: 16px;
+    background: #bbb;
+  }
+
+  .arrow-down .head {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #bbb;
+  }
+
+  .arrow-label {
+    font-size: 10px;
+    color: #999;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 2px 0;
+  }
+
+  /* PHASE BOXES */
+  .phase {
+    width: 100%;
+    border-radius: 10px;
+    padding: 18px 22px;
+    position: relative;
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .phase-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .phase-title {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .phase-timing {
+    font-size: 11px;
+    color: #888;
+    font-weight: 500;
+    margin-left: auto;
+  }
+
+  .phase-desc {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  /* GAUNTLET */
+  .gauntlet {
+    background: #fef9ef;
+    border: 1.5px solid #e8d5a8;
+  }
+
+  .gauntlet .phase-badge {
+    background: #d4a843;
+    color: #fff;
+  }
+
+  .gauntlet .phase-title { color: #8a6d1b; }
+
+  /* TRACK ROW */
+  .tracks-row {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .track {
+    flex: 1;
+    border-radius: 10px;
+    padding: 18px 22px;
+  }
+
+  /* TRACK A */
+  .track-a {
+    background: #f0f4ff;
+    border: 1.5px solid #b8c9ed;
+  }
+
+  .track-a .phase-badge {
+    background: #4a7bd4;
+    color: #fff;
+  }
+
+  .track-a .phase-title { color: #2d5aa0; }
+
+  /* TRACK B */
+  .track-b {
+    background: #f0faf4;
+    border: 1.5px solid #a8dbb8;
+  }
+
+  .track-b .phase-badge {
+    background: #3a9d5c;
+    color: #fff;
+  }
+
+  .track-b .phase-title { color: #2a7a44; }
+
+  /* LEARNING ITEMS */
+  .learns {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .learn-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 11.5px;
+    line-height: 1.4;
+  }
+
+  .learn-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 1px;
+  }
+
+  .gauntlet .learn-icon { background: #d4a843; }
+  .track-a .learn-icon { background: #4a7bd4; }
+  .track-b .learn-icon { background: #3a9d5c; }
+
+  /* METHOD TAGS */
+  .methods {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .method-tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.06);
+    color: #666;
+  }
+
+  /* OUTPUTS */
+  .outputs-row {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .output-box {
+    flex: 1;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    text-align: center;
+  }
+
+  .output-box h3 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .output-box p {
+    font-size: 11px;
+    color: #aaa;
+    line-height: 1.5;
+  }
+
+  /* FORK ARROWS */
+  .fork-arrows {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-end;
+    height: 28px;
+    position: relative;
+  }
+
+  .fork-arrows .stem {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 10px;
+    background: #bbb;
+  }
+
+  .fork-arrows .bar {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: #bbb;
+  }
+
+  .fork-arrows .left-drop {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    width: 2px;
+    height: 10px;
+    background: #bbb;
+  }
+
+  .fork-arrows .right-drop {
+    position: absolute;
+    top: 10px;
+    right: 25%;
+    width: 2px;
+    height: 10px;
+    background: #bbb;
+  }
+
+  .fork-arrows .left-head {
+    position: absolute;
+    top: 20px;
+    left: calc(25% - 5px);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #bbb;
+  }
+
+  .fork-arrows .right-head {
+    position: absolute;
+    top: 20px;
+    right: calc(25% - 7px);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #bbb;
+  }
+
+  /* MERGE ARROWS */
+  .merge-arrows {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 28px;
+    position: relative;
+  }
+
+  .merge-arrows .left-rise {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 2px;
+    height: 10px;
+    background: #bbb;
+  }
+
+  .merge-arrows .right-rise {
+    position: absolute;
+    top: 0;
+    right: 25%;
+    width: 2px;
+    height: 10px;
+    background: #bbb;
+  }
+
+  .merge-arrows .bar {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: #bbb;
+  }
+
+  .merge-arrows .stem {
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    width: 2px;
+    height: 10px;
+    background: #bbb;
+  }
+
+  .merge-arrows .head {
+    position: absolute;
+    top: 20px;
+    left: calc(50% - 5px);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #bbb;
+  }
+
+  /* MERGE OUTPUTS FORK */
+  .merge-out-arrows {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 28px;
+    position: relative;
+  }
+
+  .merge-out-arrows .stem {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 10px;
+    background: #bbb;
+  }
+
+  .merge-out-arrows .bar {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: #bbb;
+  }
+
+  .merge-out-arrows .left-drop {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    width: 2px;
+    height: 10px;
+    background: #bbb;
+  }
+
+  .merge-out-arrows .right-drop {
+    position: absolute;
+    top: 10px;
+    right: 25%;
+    width: 2px;
+    height: 10px;
+    background: #bbb;
+  }
+
+  .merge-out-arrows .left-head {
+    position: absolute;
+    top: 20px;
+    left: calc(25% - 5px);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #bbb;
+  }
+
+  .merge-out-arrows .right-head {
+    position: absolute;
+    top: 20px;
+    right: calc(25% - 7px);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #bbb;
+  }
+
+  /* FEED ANNOTATION */
+  .feed-annotation {
+    position: absolute;
+    font-size: 9px;
+    color: #999;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  /* THESIS BOX */
+  .thesis {
+    width: 100%;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 10px;
+    padding: 18px 24px;
+    margin-bottom: 0;
+  }
+
+  .thesis h2 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #999;
+    margin-bottom: 10px;
+    border: none;
+  }
+
+  .thesis-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+  }
+
+  .thesis-item {
+    font-size: 11px;
+    color: #ccc;
+    line-height: 1.4;
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+  }
+
+  /* HOW IT WORKS SECTION */
+  .how-it-works {
+    background: rgba(0,0,0,0.04);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin: 10px 0;
+  }
+
+  .how-it-works h4 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .track-a .how-it-works h4 { color: #2d5aa0; }
+
+  .how-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 11px;
+    line-height: 1.45;
+    color: #444;
+  }
+
+  .how-step .step-num {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 1px;
+  }
+
+  .track-a .how-step .step-num { background: #4a7bd4; }
+
+  .why-box {
+    margin-top: 8px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  .track-a .why-box {
+    background: rgba(74, 123, 212, 0.08);
+    border-left: 3px solid #4a7bd4;
+  }
+
+  /* CONVERGENCE BOX */
+  .convergence {
+    width: 100%;
+    background: #f8f0ff;
+    border: 1.5px solid #d4b8e8;
+    border-radius: 10px;
+    padding: 18px 22px;
+  }
+
+  .convergence .phase-header {
+    justify-content: flex-start;
+  }
+
+  .convergence .phase-badge {
+    background: #8b5fbf;
+    color: #fff;
+    display: inline-block;
+    margin-bottom: 0;
+  }
+
+  .convergence .phase-title {
+    color: #6b3fa0;
+  }
+
+  .convergence .phase-desc {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+
+  .convergence .learn-icon { background: #8b5fbf; }
+
+  .convergence-grid {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .conv-insight {
+    flex: 1;
+    background: rgba(139, 95, 191, 0.06);
+    border-radius: 6px;
+    padding: 10px 12px;
+  }
+
+  .conv-insight strong {
+    display: block;
+    font-size: 11px;
+    color: #6b3fa0;
+    margin-bottom: 3px;
+  }
+
+  .conv-insight span {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.4;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Home Surface Research Flow</h1>
+  <p>Yahoo Mail Premium &middot; What we're learning at each stage</p>
+</div>
+
+<div class="flow">
+
+  <!-- CORE THESIS -->
+  <div class="thesis">
+    <h2>Core Thesis Requirements — What the Home Surface Must Be</h2>
+    <div class="thesis-grid">
+      <div class="thesis-item">Low cognitive lift</div>
+      <div class="thesis-item">Radically improved signal-to-noise</div>
+      <div class="thesis-item">Powered by the Life Graph</div>
+      <div class="thesis-item">Designed for rapid processing</div>
+      <div class="thesis-item">Creates a sense of low-lift completion</div>
+      <div class="thesis-item">Breaks from sender/subject/snippet chronological inbox</div>
+      <div class="thesis-item">One flexible surface, not a network of views</div>
+      <div class="thesis-item">Comprehensive enough to replace the inbox entirely</div>
+    </div>
+  </div>
+
+  <!-- ARROW -->
+  <div class="arrow-down">
+    <div class="line"></div>
+    <div class="arrow-label">built on top of</div>
+    <div class="head"></div>
+  </div>
+
+  <!-- ESTABLISHED GROUND -->
+  <div class="established">
+    <h2>Established with Conviction (Do Not Re-Test)</h2>
+    <div class="principles">
+      <div class="principle">
+        <strong>Chunking works</strong>
+        Bite-sized cognitive chunks provide emotional and cognitive relief
+      </div>
+      <div class="principle">
+        <strong>Whole-picture upshot</strong>
+        "Since you were last here" is non-negotiable to prevent FOMO
+      </div>
+      <div class="principle">
+        <strong>Privacy &lt; value</strong>
+        Users accept Life Graph privacy tradeoffs if value delivers
+      </div>
+      <div class="principle">
+        <strong>Upcoming &ge; incoming</strong>
+        Tracking obligations is as important as triaging new mail
+      </div>
+      <div class="principle">
+        <strong>Replace, don't add</strong>
+        Must become the primary experience, not another surface
+      </div>
+    </div>
+  </div>
+
+  <!-- ARROW -->
+  <div class="arrow-down">
+    <div class="line"></div>
+    <div class="arrow-label">feeds into</div>
+    <div class="head"></div>
+  </div>
+
+  <!-- GAUNTLET -->
+  <div class="phase gauntlet">
+    <div class="phase-header">
+      <span class="phase-badge">Pre-Phase</span>
+      <span class="phase-title">Concept Gauntlet</span>
+      <span class="phase-timing">Weeks 1–2</span>
+    </div>
+    <div class="phase-desc">4 concepts &times; 2 lenses (landing page w/ motion + narrated walkthrough). Go wide, then narrow to 2–3 winners.</div>
+    <div class="learns">
+      <div class="learn-item">
+        <div class="learn-icon">?</div>
+        <span><strong>Which visions resonate?</strong> Does the promise land before people see the full interaction?</span>
+      </div>
+      <div class="learn-item">
+        <div class="learn-icon">?</div>
+        <span><strong>Does the logic hold?</strong> When narrated step-by-step, does the flow make sense for daily use?</span>
+      </div>
+      <div class="learn-item">
+        <div class="learn-icon">?</div>
+        <span><strong>Which dimensions matter most?</strong> Do reactions cluster around density, framing, completion, or IA?</span>
+      </div>
+      <div class="learn-item">
+        <div class="learn-icon">?</div>
+        <span><strong>Where do the lenses diverge?</strong> Landing page love + walkthrough confusion = what to fix in the prototype.</span>
+      </div>
+    </div>
+    <div class="methods">
+      <span class="method-tag">dScout Express</span>
+      <span class="method-tag">5 internal + 5–8 external</span>
+      <span class="method-tag">2 concepts/day &times; 2 days</span>
+    </div>
+  </div>
+
+  <!-- FORK INTO TWO TRACKS -->
+  <div class="fork-arrows">
+    <div class="stem"></div>
+    <div class="bar"></div>
+    <div class="left-drop"></div>
+    <div class="right-drop"></div>
+    <div class="left-head"></div>
+    <div class="right-head"></div>
+  </div>
+
+  <!-- PARALLEL TRACKS -->
+  <div class="tracks-row">
+
+    <!-- TRACK A -->
+    <div class="track track-a">
+      <div class="phase-header">
+        <span class="phase-badge">Track A</span>
+        <span class="phase-title">Intelligence Calibration</span>
+      </div>
+      <div class="phase-timing" style="margin-bottom: 8px;">Ongoing &middot; Shadow Inbox + Method Toolkit</div>
+
+      <div class="phase-desc"><strong>The big question:</strong> The Home Surface depends on AI that understands your email life — what's urgent, what's upcoming, what can wait. Before we can test the experience, we need to know if the intelligence behind it is good enough. This track is ongoing research with 5–7 dedicated dogfooders who fit our target audience — overwhelmed, high-volume email users.</div>
+
+      <div class="how-it-works">
+        <h4>How the Shadow Inbox Works</h4>
+        <p style="font-size:11px; color:#555; margin-bottom:8px; line-height:1.5;">5–7 dogfooders from our target audience keep using their normal inbox. Each day, we simulate what the Home Surface <em>would have shown them</em> and ask: did we get it right? Think of it as a daily "report card" for the AI.</p>
+        <div class="how-step">
+          <div class="step-num">1</div>
+          <span><strong>Morning:</strong> Participant screenshots their real inbox and tells us what's important to them today and what's coming up this week. (~5 min)</span>
+        </div>
+        <div class="how-step">
+          <div class="step-num">2</div>
+          <span><strong>Mid-morning:</strong> We feed that information into an AI prompt that simulates what the Home Surface would show — prioritized emails, categories, micro-briefs, a "since you were last here" summary. (~8–15 min per person)</span>
+        </div>
+        <div class="how-step">
+          <div class="step-num">3</div>
+          <span><strong>Before lunch:</strong> Participant receives their personalized "Shadow Inbox" — a realistic mockup of what this product would look like with <em>their</em> emails.</span>
+        </div>
+        <div class="how-step">
+          <div class="step-num">4</div>
+          <span><strong>Afternoon:</strong> Participant rates how well we did. Were the priorities right? Did we miss anything important? Did the categories make sense? (~3–5 min)</span>
+        </div>
+      </div>
+
+      <div class="why-box">
+        <strong>Why this matters beyond tuning:</strong> This isn't just about getting the AI right. It produces a clear picture of where the intelligence stands, which capabilities are strong, and where we need to focus investment. We track accuracy over time — if it's improving, we know we're on the right path. If it plateaus, we know exactly which areas need a different approach.
+      </div>
+
+      <div class="learns" style="margin-top: 10px;">
+        <div class="learn-item">
+          <div class="learn-icon">?</div>
+          <span><strong>Priority accuracy:</strong> Does the AI's "most important" match what the person actually cares about? Target: ~80%.</span>
+        </div>
+        <div class="learn-item">
+          <div class="learn-icon">?</div>
+          <span><strong>Failure patterns:</strong> When it's wrong, <em>why</em>? Missing context it can't see? Miscategorizing? Wrong urgency read?</span>
+        </div>
+        <div class="learn-item">
+          <div class="learn-icon">?</div>
+          <span><strong>Learning curve:</strong> Does accuracy get better each day as we refine the prompts, or does it plateau?</span>
+        </div>
+        <div class="learn-item">
+          <div class="learn-icon">?</div>
+          <span><strong>Where to focus investment:</strong> Which capabilities are strong? Which need a different approach or focused effort?</span>
+        </div>
+        <div class="learn-item">
+          <div class="learn-icon">?</div>
+          <span><strong>Presentation preferences:</strong> On some days we vary how much detail we show (full briefs vs. summaries) and how "done" is signaled — what do people prefer?</span>
+        </div>
+      </div>
+      <div class="methods">
+        <span class="method-tag">5–7 dogfooders (target audience)</span>
+        <span class="method-tag">Ongoing, weekdays</span>
+        <span class="method-tag">6-method toolkit</span>
+        <span class="method-tag">dScout diary</span>
+      </div>
+    </div>
+
+    <!-- TRACK B -->
+    <div class="track track-b">
+      <div class="phase-header">
+        <span class="phase-badge">Track B</span>
+        <span class="phase-title">Experience Prototypes</span>
+      </div>
+      <div class="phase-timing" style="margin-bottom: 8px;">Weeks 3–5 &middot; Instrumented web apps</div>
+      <div class="phase-desc">2–3 Gauntlet winners built as full interactive prototypes with baked-in analytics. Tested by fresh external panel.</div>
+      <div class="learns">
+        <div class="learn-item">
+          <div class="learn-icon">?</div>
+          <span><strong>Which IA works?</strong> Categories vs. priority tiers vs. temporal — what's intuitive?</span>
+        </div>
+        <div class="learn-item">
+          <div class="learn-icon">?</div>
+          <span><strong>Right density?</strong> Informed or overwhelmed? Enough to act without opening emails?</span>
+        </div>
+        <div class="learn-item">
+          <div class="learn-icon">?</div>
+          <span><strong>How do people triage?</strong> Per-item, batch, or just trust the system? Scan patterns?</span>
+        </div>
+        <div class="learn-item">
+          <div class="learn-icon">?</div>
+          <span><strong>What's the mental model?</strong> Briefing, dashboard, assistant? Does it create calm?</span>
+        </div>
+        <div class="learn-item">
+          <div class="learn-icon">?</div>
+          <span><strong>When are they "done"?</strong> Which completion signal earns confidence to stop checking?</span>
+        </div>
+      </div>
+      <div class="methods">
+        <span class="method-tag">dScout Express (external)</span>
+        <span class="method-tag">Moderated labs (8–10)</span>
+        <span class="method-tag">Built-in analytics</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MERGE -->
+  <div class="merge-arrows">
+    <div class="left-rise"></div>
+    <div class="right-rise"></div>
+    <div class="bar"></div>
+    <div class="stem"></div>
+    <div class="head"></div>
+  </div>
+
+  <!-- CONVERGENCE -->
+  <div class="convergence">
+    <div class="phase-header">
+      <span class="phase-badge">Convergence</span>
+      <span class="phase-title">Bringing It Together</span>
+      <span class="phase-timing">Weeks 4–5</span>
+    </div>
+
+    <div class="phase-desc">Tracks A and B are designed to run separately, then merge. Here's what that looks like: everything we learned about the AI's intelligence quality in Track A gets built into the experience prototypes from Track B. The result is a prototype that doesn't just <em>look</em> right — it's powered by intelligence we've already validated against real email data. The external panel in Weeks 4–5 experiences this integrated version.</div>
+
+    <div class="phase-desc">This is also where the most interesting insights emerge — because the two tracks interact in ways you can't predict from either one alone:</div>
+
+    <div class="convergence-grid">
+      <div class="conv-insight">
+        <strong>Accuracy changes tolerance</strong>
+        <span>People may accept a denser, more information-heavy surface when they trust the AI is getting priorities right. If the intelligence is unreliable, the same density feels overwhelming.</span>
+      </div>
+      <div class="conv-insight">
+        <strong>Framing changes trust</strong>
+        <span>The same AI accuracy might feel trustworthy in a "Chief of Staff" frame (the system decided for you) but anxiety-inducing in a "Morning Brief" frame (did I miss something in the narrative?).</span>
+      </div>
+      <div class="conv-insight">
+        <strong>Completion depends on accuracy</strong>
+        <span>A "you're all caught up" signal only works if the system actually caught everything. The right completion model may be different at 70% accuracy vs. 90%.</span>
+      </div>
+    </div>
+
+    <div class="learns" style="margin-top: 12px;">
+      <div class="learn-item">
+        <div class="learn-icon">?</div>
+        <span><strong>Does the integrated experience hold up?</strong> An experience that worked with curated data may feel different with real AI-generated content.</span>
+      </div>
+      <div class="learn-item">
+        <div class="learn-icon">?</div>
+        <span><strong>What's the minimum intelligence bar?</strong> Below what accuracy threshold does the experience fall apart, regardless of how well-designed it is?</span>
+      </div>
+      <div class="learn-item">
+        <div class="learn-icon">?</div>
+        <span><strong>Which direction is strongest overall?</strong> With both experience design and intelligence quality factored in — what are we most confident shipping?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORK TO OUTPUTS -->
+  <div class="merge-out-arrows">
+    <div class="stem"></div>
+    <div class="bar"></div>
+    <div class="left-drop"></div>
+    <div class="right-drop"></div>
+    <div class="left-head"></div>
+    <div class="right-head"></div>
+  </div>
+
+  <!-- OUTPUTS -->
+  <div class="outputs-row">
+    <div class="output-box">
+      <h3>Experience Direction Deck</h3>
+      <p>The 2 strongest directions with behavioral data, qualitative signal, and analytics. What each needs to become a product.</p>
+    </div>
+    <div class="output-box">
+      <h3>Intelligence Readiness Assessment</h3>
+      <p>Accuracy trajectory, failure modes, and a clear build-vs-vendor recommendation for cross-functional leadership.</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

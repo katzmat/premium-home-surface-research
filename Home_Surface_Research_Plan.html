@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yahoo Mail Premium — Home Surface Research Plan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    color: #1a1a1a;
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #1a1a1a;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+    border-bottom: 2px solid #e5e5e5;
+    padding-bottom: 8px;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 28px;
+    margin-bottom: 12px;
+    color: #333;
+  }
+
+  h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: #555;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 4px;
+  }
+
+  .date {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 32px;
+  }
+
+  .topline {
+    background: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 24px 0 40px 0;
+  }
+
+  .topline h2 {
+    margin-top: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+    font-size: 18px;
+  }
+
+  .topline p, .topline li {
+    font-size: 13.5px;
+  }
+
+  .callout {
+    background: #fef9ef;
+    border-left: 3px solid #d4a843;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 13.5px;
+  }
+
+  .callout-blue {
+    background: #f0f4ff;
+    border-left: 3px solid #4a7bd4;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 13.5px;
+  }
+
+  p {
+    margin: 8px 0 12px 0;
+  }
+
+  ul, ol {
+    margin: 8px 0;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+
+  th {
+    background: #f5f5f5;
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+  }
+
+  td {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  em {
+    color: #555;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    margin: 32px 0;
+  }
+
+  .page-break {
+    page-break-after: always;
+    border-top: 3px solid #1a1a1a;
+    margin: 48px 0 40px 0;
+  }
+
+  .label {
+    display: inline-block;
+    background: #eee;
+    color: #555;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+  }
+
+  .step-number {
+    display: inline-block;
+    background: #1a1a1a;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+  .decision-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .decision-list li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .decision-list li::before {
+    content: "[ ]";
+    position: absolute;
+    left: 0;
+    font-family: monospace;
+    color: #999;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<h1>Yahoo Mail Premium</h1>
+<div class="subtitle">Home Surface Research Plan</div>
+<div class="subtitle">Concept Gauntlet &middot; Shadow Inbox &middot; Experience Prototypes</div>
+<div class="date">Draft for Discussion &middot; March 2026 &middot; UX Research</div>
+
+<!-- TOPLINE -->
+<div class="topline">
+<h2>Topline Summary</h2>
+
+<p>We're researching the <strong>Home Surface</strong> — a new primary email screen that replaces the chronological inbox with an intelligent, life-organized experience powered by the Life Graph. This plan answers two questions in parallel:</p>
+
+<ol>
+  <li><strong>Does the experience work?</strong> We start with 4 distinct experience visions, rapidly evaluate them through a <strong>Concept Gauntlet</strong> (landing pages + video walkthroughs via dScout Express), then build the 2–3 winners as full interactive, instrumented web prototypes tested by an external panel.</li>
+  <li><strong>Is the intelligence ready?</strong> We run a 1–2 week <strong>Shadow Inbox</strong> simulation with 5 internal dogfooders — comparing what the system <em>would have shown</em> against their real inbox. This calibrates accuracy, surfaces failure modes, and produces a clear recommendation on whether we can build the intelligence in-house or need vendor consultation.</li>
+</ol>
+
+<p><strong>Target archetype:</strong> The overwhelmed millennial parent — permission slips mixed with mortgage alerts mixed with soccer carpool. If this works for them, it works for everyone.</p>
+
+<p><strong>Timeline:</strong> 5 weeks. Gauntlet runs Weeks 1–2. Intelligence calibration runs Weeks 2–3. Experience prototypes tested Weeks 3–5.</p>
+
+<p><strong>Week 5 deliverables:</strong></p>
+<ol>
+  <li><strong>Experience direction deck</strong> — the 2 strongest directions with data, for cross-functional leadership</li>
+  <li><strong>Intelligence readiness assessment</strong> — can we build this, or do we need outside help?</li>
+</ol>
+
+<p><strong>Participants:</strong> 5 internal dogfooders (Weeks 1–3, then roll off) + 5–8 external dScout recruits (Weeks 3–5, fresh eyes on prototypes).</p>
+</div>
+
+<!-- PAGE BREAK INTO FULL PLAN -->
+<div class="page-break"></div>
+
+<h1>Full Research Plan</h1>
+
+<!-- 1. STRATEGIC CONTEXT -->
+<h2>1. Strategic Context</h2>
+
+<h3>What we're building</h3>
+<p>Yahoo Mail Premium (~$20/mo) — a subscription built on AI-powered features that make the inbox understand the user's life. Core technology: the <strong>Life Graph</strong>, a frontier LLM-powered model of the user's life built from email content and behavioral signals.</p>
+
+<h3>What we're researching</h3>
+<p>The <strong>Home Surface</strong> — a new primary email screen replacing the chronological list view. It must handle:</p>
+<ul>
+  <li><strong>Incoming:</strong> New emails, triaged and prioritized by life context</li>
+  <li><strong>Upcoming:</strong> Obligations, deadlines, and events extracted from email history</li>
+  <li><strong>The middle space:</strong> Lifting select incoming items into upcoming when they contain future obligations</li>
+</ul>
+
+<h3>Target archetype</h3>
+<p>The overwhelmed millennial parent — someone whose email system has gotten away from them. Permission slips mixed with mortgage alerts mixed with soccer carpool. If the Home Surface works for this person, it works for everyone.</p>
+
+<h3>Core thesis requirements</h3>
+<ul>
+  <li>Low cognitive lift</li>
+  <li>Radically improved signal-to-noise</li>
+  <li>Leverages the intelligent context graph (Life Graph)</li>
+  <li>Designed for rapid processing</li>
+  <li>Creates a sense of low-lift completion</li>
+  <li>Diverges from the sender/subject/snippet chronological inbox</li>
+  <li>One surface that intuitively flexes (not a linked network of surfaces)</li>
+  <li>Comprehensive enough to replace the inbox, not sit alongside it</li>
+</ul>
+
+<h3>Established principles (validated — do NOT re-test)</h3>
+<p>Prior research from the Google Sprint, hackathon prototype, and ongoing concept work established these with sufficient conviction:</p>
+<ol>
+  <li><strong>Cognitive chunking works.</strong> Bite-sized chunks provide emotional and cognitive relief.</li>
+  <li><strong>Whole-picture upshot is non-negotiable.</strong> "Since you were last here" is required to avoid FOMO. Without it, any new surface feels like it's hiding something.</li>
+  <li><strong>Privacy is secondary to value.</strong> Users accept Life Graph privacy implications if the intelligence delivers genuine value.</li>
+  <li><strong>Upcoming &ge; incoming.</strong> Tracking upcoming obligations is at least as important as triaging new messages.</li>
+  <li><strong>Replacement, not addition.</strong> Must become the primary experience, not "yet another surface."</li>
+</ol>
+
+<hr>
+
+<!-- 2. OPEN RESEARCH QUESTIONS -->
+<h2>2. Open Research Questions</h2>
+<p>The Home Surface design space is multi-dimensional. These are the questions this research is designed to answer:</p>
+
+<h3>Information Architecture</h3>
+<p>How is the surface organized? What are the primary structural units — categories, priority tiers, temporal groupings? Where does incoming end and upcoming begin — visible boundary, gradient, or fluid integration? How does "since you were last here" relate spatially to the rest?</p>
+<p><em>Range: Distinct sections &harr; fully integrated by relevance &harr; category-first with mixed incoming/upcoming</em></p>
+
+<h3>Content Density</h3>
+<p>How much does the surface show at once? How much context per item — does the micro-brief replace or augment sender/subject/snippet? How deep does each grouping go before requiring drill-down? How does density shift between light and heavy days?</p>
+<p><em>Range: Headline-only &harr; full micro-briefs inline &harr; category summaries with counts</em></p>
+
+<h3>Interaction Patterns &amp; Triage Mechanics</h3>
+<p>What's the interaction grammar? Does the system decide, does the user confirm, or is it a spectrum? What are the gestures for surface action vs. drill-in? How does "lifting" an incoming item into upcoming feel?</p>
+<p><em>Range: Per-item approve/defer/dismiss &harr; batch by category &harr; system pre-triaged, user reviews</em></p>
+
+<h3>Behavior Patterns</h3>
+<p>How do people actually move through this surface? What's the scan pattern — top to bottom, by category, by urgency? What triggers a drill-down vs. acting from the surface? How does a quick check-in differ from a dedicated session?</p>
+<p><em>Captured via: Lab observation, scroll/tap instrumentation, Express self-report</em></p>
+
+<h3>Cognitive Framing &amp; Mental Model</h3>
+<p>What mental model do users adopt? Briefing, dashboard, to-do list, assistant, or something new? Does the framing create calm or anxiety?</p>
+<p><em>Range: Briefing you read &harr; dashboard you monitor &harr; assistant that reports &harr; canvas you scan</em></p>
+
+<h3>Completion Model</h3>
+<p>What replaces the unread count as the "I'm done" signal? Is it an explicit state, a progress signal, or the absence of urgency? Does the feeling reset daily or accumulate?</p>
+<p><em>Range: Explicit state &harr; progressive depletion &harr; ambient calm &harr; summary receipt</em></p>
+
+<h3>Temporal Dynamics</h3>
+<p>How does the surface change throughout the day? Is morning different from evening? After triage, does the surface contract, rearrange, or celebrate? What about returning after hours away vs. minutes?</p>
+<p><em>Range: Static snapshot &harr; morning/evening modes &harr; continuous adaptation</em></p>
+
+<h3>User Agency Spectrum</h3>
+<p>How much agency does the user want in the triage flow vs. wanting the system to just get it right? This likely varies by email type, trust level, and tenure. We need the right default posture and how it should evolve.</p>
+
+<hr>
+
+<!-- 3. RESEARCH ARCHITECTURE -->
+<h2>3. Research Architecture</h2>
+
+<!-- GAUNTLET -->
+<h3>Pre-Phase: The Concept Gauntlet</h3>
+<p><span class="label">Weeks 1–2</span></p>
+
+<p><strong>Goal:</strong> Go wide before going deep. Take 4 distinct experience visions, run them through rapid evaluation, and identify which 2–3 deserve the investment of full interactive prototype builds.</p>
+
+<h4>The Two-Lens Stimulus Package</h4>
+<p>Each concept is expressed through two complementary lenses. Together, they test the <em>idea</em> and the <em>logic</em> of each vision:</p>
+
+<p><strong>1. Value Prop Landing Page with Embedded Motion</strong><br>
+The promise in plain language, plus animated sections showing surface dynamics. Headline, description, key screens with motion that hints at behavior. Tests "would I want this?" and "does it feel right?" in a single artifact. Built as polished single-page sites, deployed to Vercel, linkable from dScout.</p>
+
+<p><strong>2. Narrated Video Walkthrough</strong><br>
+Screen-recorded walkthrough of a realistic morning email processing scenario with voiceover. Uses the Busy Parent persona throughout so participants compare concepts, not data. ~60–90 seconds each. Tests whether the logic and flow make sense — "could I do this every morning?"</p>
+
+<h4>Why Two Lenses</h4>
+<p>They deliberately test different things and may produce divergent signal for the same concept:</p>
+<ul>
+  <li><strong>Landing page resonance &ne; walkthrough clarity:</strong> A concept might score high on "I want that" but low on "I understand how it works." That's a communication problem, not a concept problem — tells you where to invest in the prototype.</li>
+  <li><strong>Walkthrough clarity &ne; landing page resonance:</strong> A concept might make perfect sense when narrated but lack a compelling value prop. That's a positioning problem, not a design problem.</li>
+</ul>
+<p>These divergences tell you not just <em>which</em> concepts to advance but <em>what to fix about them</em>.</p>
+
+<h4>Evaluation</h4>
+<p>dScout Express mission. Participants see 2 concepts/day over 2 days, responding after each lens:</p>
+<ul>
+  <li>After landing page: "Would you want this? What excites you? What worries you? How does it feel?"</li>
+  <li>After walkthrough: "Does this make sense? Where did you get lost? Could you see yourself doing this every morning?"</li>
+  <li>After full package: "Compared to your real inbox, is this better? Would this replace your current email? What's the single biggest thing that would need to change?"</li>
+</ul>
+
+<h4>Gauntlet Output</h4>
+<ul>
+  <li><strong>2–3 concepts advanced</strong> to full prototype builds</li>
+  <li><strong>Design dimension priorities:</strong> which dimensions mattered most to participants</li>
+  <li><strong>Concept refinement briefs:</strong> what worked, what needs to change per advancing concept</li>
+</ul>
+
+<hr>
+
+<!-- TRACK A -->
+<h3>Track A — Intelligence Calibration (Shadow Inbox + WoZ)</h3>
+<p><span class="label">Weeks 2–3</span></p>
+
+<p><strong>Goal:</strong> Calibrate Life Graph judgment quality through daily Wizard-of-Oz simulation against real participant email data. This is a calibration sprint (1–2 weeks), not an extended study.</p>
+
+<h4>The Shadow Inbox Method</h4>
+<p>Each participant maintains their real inbox as-is, but receives a daily simulated view of what the Home Surface <em>would have shown</em> them. This creates a direct comparison loop: did the system get it right?</p>
+
+<p><strong>5 internal dogfooders. Weekdays only.</strong></p>
+
+<h4>Daily Cycle</h4>
+<p><span class="step-number">1</span><strong>Morning input</strong> (participant, ~5 min): dScout diary — screenshots, voice narration of what's important, structured fields for top priorities and upcoming items.</p>
+<p><span class="step-number">2</span><strong>WoZ processing</strong> (operator, ~8–15 min/participant): Feed input into Claude prompt template that simulates Home Surface logic — prioritizing, categorizing, generating micro-briefs, separating incoming from upcoming. Output rendered into high-fidelity static mockup. Batch all participants after a morning cutoff.</p>
+<p><span class="step-number">3</span><strong>Shadow Inbox delivery</strong> (within 1–2 hours): Participant receives their personalized view while morning context is fresh.</p>
+<p><span class="step-number">4</span><strong>Afternoon reaction</strong> (participant, ~3–5 min): Evaluate the Shadow Inbox — priorities right? Anything missed? Miscategorized? Completion signal feel earned?</p>
+
+<h4>Treatment Variations</h4>
+<p>On select days, the treatment varies without informing participants (within-subjects):</p>
+<table>
+  <tr><th>Dimension</th><th>Variations</th></tr>
+  <tr><td>Agency</td><td>Aggressive (system handled low-priority, receipts only) vs. Conservative (everything surfaced with priority tiers)</td></tr>
+  <tr><td>Completion</td><td>Progress indicator vs. affirmative statement vs. priority countdown vs. no signal</td></tr>
+  <tr><td>Density</td><td>Full micro-briefs per item vs. category-level summaries only</td></tr>
+  <tr><td>Temporal</td><td>Morning-optimized (upcoming-heavy) vs. catch-up (since-last-visit-heavy) vs. unified</td></tr>
+</table>
+
+<h4>Metrics</h4>
+<ul>
+  <li><strong>Priority accuracy</strong> (~80% target): system's top-3 vs. participant's self-reported top-3</li>
+  <li><strong>Miss rate:</strong> how often the system fails to surface something important</li>
+  <li><strong>Trust trajectory:</strong> does confidence increase, plateau, or erode?</li>
+  <li><strong>Completion signal effectiveness:</strong> which variant produces the most confidence to stop checking?</li>
+  <li><strong>Density preference:</strong> does preference correlate with volume or email type?</li>
+</ul>
+
+<div class="callout">
+  <strong>The Intelligence Readiness Gate</strong><br>
+  Track A isn't just tuning the prompt — it produces evidence about whether the intelligence layer is feasible in-house. Key outputs:
+  <ul style="margin-bottom: 0;">
+    <li>Priority accuracy trajectory over the 1–2 weeks (improving? plateauing? stuck?)</li>
+    <li>Failure mode breakdown (missing context? wrong categories? bad prioritization?) — tells you whether gaps are solvable with more tuning or are fundamental</li>
+    <li>Honest comparison: what a well-prompted frontier LLM can do today vs. what the product needs</li>
+    <li><strong>Recommendation: build in-house vs. bring in vendor consultation</strong></li>
+  </ul>
+</div>
+
+<p><strong>Recruitment criteria for the 5</strong> (each participant is high-value — choose carefully):</p>
+<ul>
+  <li>Genuine email diversity (not 5 PMs with identical inboxes)</li>
+  <li>High daily volume (enough signal for the WoZ to work with)</li>
+  <li>Reliable — will actually screenshot and narrate every morning</li>
+  <li>Internal credibility — their eventual advocacy carries weight</li>
+</ul>
+
+<p>This group rolls off after 1–2 weeks. Their purpose is to calibrate the intelligence and build internal conviction. WoZ learnings get baked into the prototypes the external panel evaluates.</p>
+
+<hr>
+
+<!-- TRACK B -->
+<h3>Track B — Experience Design Exploration</h3>
+<p><span class="label">Weeks 3–5</span></p>
+
+<p><strong>Goal:</strong> The 2–3 Gauntlet winners are built as full interactive prototypes. Each is a complete experience that takes deliberate positions across the full design space. These are research-owned, instrumented web apps — the "pre-TestFlight" version.</p>
+
+<h4>Relationship to the Gauntlet</h4>
+<p>The Gauntlet determines which concepts enter Track B <em>and what to emphasize</em>. A concept that scored high on value prop but felt too dense enters with a mandate to solve density. A concept that made sense in the walkthrough but lacked excitement enters with a mandate to sharpen the value prop. The Gauntlet doesn't just select — it refines.</p>
+
+<h4>Intelligence Is Pre-Calibrated</h4>
+<p>What we learned from the dogfood WoZ group in Track A gets baked into the prototypes. The external panel never does Shadow Inbox — they experience the refined product directly.</p>
+
+<h4>Design Dimensions Under Exploration</h4>
+<p>Each prototype takes a deliberate position on each dimension:</p>
+<table>
+  <tr><th>Dimension</th><th>Spectrum</th></tr>
+  <tr><td>Information architecture</td><td>Categories vs. priority tiers vs. temporal flow vs. unified stream</td></tr>
+  <tr><td>Content density</td><td>Headline-only with drill-to-detail &harr; full micro-briefs inline &harr; category summaries</td></tr>
+  <tr><td>Interaction &amp; triage</td><td>Per-item approve/defer/dismiss &harr; batch by category &harr; system pre-triaged, user reviews</td></tr>
+  <tr><td>Cognitive framing</td><td>Briefing you read &harr; dashboard you monitor &harr; assistant that reports &harr; canvas you scan</td></tr>
+  <tr><td>Completion model</td><td>Explicit state &harr; progressive depletion &harr; ambient calm &harr; summary receipt</td></tr>
+  <tr><td>Temporal dynamics</td><td>Static snapshot &harr; morning/evening modes &harr; continuous adaptation</td></tr>
+</table>
+
+<h4>Prototype Delivery</h4>
+<p>Mobile-first web apps running in mobile Safari via URL. Phone-only with viewport lock for prototypes — no TestFlight, no App Store. Participants get a link. Gauntlet stimulus (landing pages + walkthrough videos) viewable on any device.</p>
+
+<h4>Testing Methods</h4>
+<p>Fresh dScout panel — external recruits with no product vision context:</p>
+<ul>
+  <li><strong>dScout Express:</strong> Use prototype, then go to real inbox, narrate comparison. Multi-day diary entries build comparative signal.</li>
+  <li><strong>Moderated labs (8–10 sessions):</strong> Think-aloud, scan pattern observation, cognitive framing probes, processing speed measurement.</li>
+  <li><strong>Built-in analytics:</strong> Tap targets, scroll depth, time-on-surface, drill-down rate, triage completion time, return-to-surface frequency.</li>
+</ul>
+
+<h4>Measurement Across Dimensions</h4>
+<table>
+  <tr><th>Dimension</th><th>Signal</th><th>Method</th></tr>
+  <tr><td>Information architecture</td><td>Intuitive structure? Find what needed?</td><td>First-look labs, time-to-action, Express clarity narration</td></tr>
+  <tr><td>Content density</td><td>Informed or overwhelmed? Enough context to act?</td><td>Drill-down rate (instrumented), satisfaction, inbox comparison</td></tr>
+  <tr><td>Interaction &amp; triage</td><td>Learnable? Fast? Complete triage or abandon?</td><td>Triage rate/time (instrumented), lab observation, think-aloud</td></tr>
+  <tr><td>Behavior patterns</td><td>Scan path? Linear or jumping? Quick check vs. session?</td><td>Lab observation, heatmaps, Express self-report</td></tr>
+  <tr><td>Cognitive framing</td><td>Mental model adopted? Calm or anxiety?</td><td>Lab probes, Express narration, trust ratings</td></tr>
+  <tr><td>Completion model</td><td>When "done"? Signal earned? Reduce rechecking?</td><td>Confidence ratings, return frequency, Express self-report</td></tr>
+  <tr><td>Temporal dynamics</td><td>Appropriate for time of day? Post-triage satisfying?</td><td>Multi-day Express, lab probes</td></tr>
+</table>
+
+<hr>
+
+<!-- CONVERGENCE -->
+<h3>Convergence</h3>
+<p>WoZ learnings from Track A are baked into Track B prototypes before the external panel sees them. Cross-track insights emerge through the prototype testing itself: Do people tolerate less detail when intelligence is accurate? Does trust build faster in certain frames? Which completion signal works best when triage is actually reliable?</p>
+
+<div class="callout-blue">
+  <strong>Quality gate:</strong> If Track A calibration isn't sufficient by Week 3, prototypes ship with curated data instead of WoZ-informed data. Track B is not blocked.
+</div>
+
+<hr>
+
+<!-- 4. PARTICIPANTS -->
+<h2>4. Participant Structure</h2>
+<p>Two groups, sequential — not overlapping:</p>
+
+<table>
+  <tr><th>Group</th><th>Who</th><th>When</th><th>Purpose</th></tr>
+  <tr>
+    <td><strong>Internal dogfood (5)</strong></td>
+    <td>Handpicked Yahoo Mail team. Diverse email lives — parents, managers, ICs, subscription-heavy.</td>
+    <td>Weeks 1–3 (Gauntlet reactions + Shadow Inbox)</td>
+    <td>Calibrate intelligence, test concepts, build internal advocacy</td>
+  </tr>
+  <tr>
+    <td><strong>External dScout panel (5–8)</strong></td>
+    <td>Recruited via dScout. No product vision knowledge.</td>
+    <td>Weeks 3–5 (prototype testing)</td>
+    <td>Clean-read validation on experience prototypes with calibrated intelligence</td>
+  </tr>
+</table>
+
+<p><strong>External screening criteria:</strong> High unread (1K+), multiple accounts, self-reported inbox stress, high daily volume, personal + professional email mix.</p>
+
+<hr>
+
+<!-- 5. CONCEPT DIRECTIONS -->
+<h2>5. Concept Directions (4 Gauntlet Candidates)</h2>
+
+<table>
+  <tr><th style="width:20%">Concept</th><th style="width:15%">Metaphor</th><th>Description</th></tr>
+  <tr>
+    <td><strong>The Morning Brief</strong></td>
+    <td>Document you read</td>
+    <td>Narrative-first. Reads like a personalized briefing. High density, low interaction demand. Incoming and upcoming woven together by relevance. Completion = reaching the end of the briefing.</td>
+  </tr>
+  <tr>
+    <td><strong>The Living Canvas</strong></td>
+    <td>Landscape you survey</td>
+    <td>Spatial, visual. Category tiles or zones that breathe by urgency. Priority communicated through visual weight and position. Lower per-item density, higher spatial information. Triage through manipulation. Completion = visual calm.</td>
+  </tr>
+  <tr>
+    <td><strong>The Two-Stack</strong></td>
+    <td>Desk trays</td>
+    <td>Maximum simplicity. Two buckets: incoming and upcoming. Satisfying "lift" interaction to move items between them. High density within stacks. Categories subordinate. Completion = incoming stack acknowledged.</td>
+  </tr>
+  <tr>
+    <td><strong>The Chief of Staff</strong></td>
+    <td>Assistant reporting</td>
+    <td>Maximum delegation. Three tiers: Handled / Needs You / FYI. System has already decided. User reviews and overrides. Low interaction demand, high trust required. Completion = "Needs You" cleared.</td>
+  </tr>
+</table>
+
+<hr>
+
+<!-- 6. SAMPLE DATA -->
+<h2>6. Sample Data Architecture</h2>
+
+<h3>Gauntlet walkthroughs — single persona</h3>
+<p>All four walkthrough videos use <strong>Persona 1: The Busy Parent</strong> so participants compare the <em>concept</em>, not the <em>data</em>. Landing pages can be more generic.</p>
+
+<h3>Track B prototypes — full persona set</h3>
+<p>Each persona needs <strong>incoming</strong> (today's new) and <strong>upcoming</strong> (extracted obligations). Include realistic messiness — not every email is important, not every category is clean.</p>
+
+<table>
+  <tr><th>Persona</th><th>Email Life</th><th>Volume</th><th>Upcoming</th></tr>
+  <tr>
+    <td><strong>The Busy Parent</strong></td>
+    <td>School (permission slips, teacher notes, PTA), activities (soccer, music), household (contractor, utilities), deliveries, medical, spouse-forwarded</td>
+    <td>~35/day</td>
+    <td>Permission slip due Friday, dentist Tuesday, soccer carpool, mortgage auto-draft, contractor Thursday</td>
+  </tr>
+  <tr>
+    <td><strong>The Job Hunter</strong></td>
+    <td>Recruiters, application status, interviews, current job (meetings, projects), LinkedIn, references</td>
+    <td>~40/day</td>
+    <td>Phone screen Wednesday, reference deadline, project review Friday, benefits enrollment</td>
+  </tr>
+  <tr>
+    <td><strong>The Professional Manager</strong></td>
+    <td>Direct reports, cross-functional threads, meeting agendas, HR/benefits, travel, clients</td>
+    <td>~50/day</td>
+    <td>All-hands prep, client deliverable, travel next week (hotel pending), perf review cycle</td>
+  </tr>
+  <tr>
+    <td><strong>The Life-in-Transition</strong></td>
+    <td>Home purchase (mortgage, inspection, attorney), wedding, job transition, insurance, moving</td>
+    <td>~45/day</td>
+    <td>Inspection report due, venue payment, first day new job, insurance deadline, moving truck</td>
+  </tr>
+</table>
+
+<hr>
+
+<!-- 7. BUILD LIST -->
+<h2>7. What Gets Built</h2>
+
+<table>
+  <tr><th style="width:8%">Priority</th><th style="width:30%">Component</th><th>Details</th></tr>
+  <tr>
+    <td><strong>P0</strong></td>
+    <td>Gauntlet stimulus packages</td>
+    <td>4 landing pages with embedded motion + 4 video walkthroughs. 8 deliverables total. Landing pages built as HTML/React, deployed to Vercel. Walkthroughs built as animated visual substrates; voiceover recorded separately.</td>
+  </tr>
+  <tr>
+    <td><strong>P1</strong></td>
+    <td>WoZ prompt template system</td>
+    <td>Structured input (email list, priorities, life context) &rarr; structured JSON output (prioritized emails with micro-briefs, categories, incoming/upcoming, completion signal, reasoning layer). Parameter-driven treatment variations. Stress-tested Week 1. Target: &le;10 min/participant.</td>
+  </tr>
+  <tr>
+    <td><strong>P2</strong></td>
+    <td>Shadow Inbox renderer</td>
+    <td>High-fidelity static view from WoZ JSON output. Looks like a real product. Personalized. Supports all treatment visual variations. Generatable within 1–2 hours of input.</td>
+  </tr>
+  <tr>
+    <td><strong>P3</strong></td>
+    <td>Interactive prototypes</td>
+    <td>2–3 Gauntlet winners as instrumented mobile-first web apps. Curated sample data, 3–4 personas, 30–50 emails/day. Phone-only with viewport lock. Built-in analytics (taps, scroll, time, drill-down, triage speed, return frequency). Pre-TestFlight — research-owned, serves as reference implementation for eng.</td>
+  </tr>
+  <tr>
+    <td><strong>P4</strong></td>
+    <td>dScout mission design</td>
+    <td>Question flows for: Gauntlet Express (post-landing-page, post-walkthrough, post-package), Track A morning input + afternoon reaction, Track B Express evaluation.</td>
+  </tr>
+  <tr>
+    <td><strong>P5</strong></td>
+    <td>Data &amp; analysis infrastructure</td>
+    <td>Participant compliance tracking, WoZ accuracy over time, treatment variation log, behavioral instrumentation dashboards, design dimension signal matrix.</td>
+  </tr>
+</table>
+
+<hr>
+
+<!-- 8. dSCOUT MISSIONS -->
+<h2>8. dScout Mission Design</h2>
+
+<h3>Gauntlet Express Mission</h3>
+<ul>
+  <li>2 concepts per day, full two-lens package each</li>
+  <li>Post-landing-page: desire, excitement, concerns, feel</li>
+  <li>Post-walkthrough: comprehension, confusion points, daily viability</li>
+  <li>Post-package: real-inbox comparison, replacement viability, single biggest change needed</li>
+</ul>
+
+<h3>Track A — Morning Input</h3>
+<ul>
+  <li>Screenshot capture of real inbox</li>
+  <li>Voice narration: "Walk me through what's here. What's important? What's coming up?"</li>
+  <li>Structured fields: top 3 priorities, upcoming this week, what you're worried about missing</li>
+</ul>
+
+<h3>Track A — Afternoon Reaction</h3>
+<ul>
+  <li>Shadow Inbox view presented</li>
+  <li>Priority accuracy (scale + open-ended)</li>
+  <li>Misses (Y/N + what was missed)</li>
+  <li>Miscategorization (Y/N + what was wrong)</li>
+  <li>Completion confidence (scale)</li>
+  <li>Real-inbox comparison (open-ended)</li>
+  <li>Optional voice narration</li>
+</ul>
+
+<h3>Track B — Express Mission</h3>
+<ul>
+  <li>Prototype interaction (via Vercel URL)</li>
+  <li>Real-inbox comparison narration</li>
+  <li>Multi-dimensional probes: framing, density, IA clarity, completion timing, open reaction, replacement viability</li>
+</ul>
+
+<hr>
+
+<!-- 9. TIMELINE -->
+<h2>9. Timeline</h2>
+
+<table>
+  <tr>
+    <th style="width:12%"></th>
+    <th>Week 1</th>
+    <th>Week 2</th>
+    <th>Week 3</th>
+    <th>Week 4</th>
+    <th>Week 5</th>
+  </tr>
+  <tr>
+    <td><strong>Gauntlet</strong></td>
+    <td>Build 8 stimulus pieces (4 landing pages + 4 walkthroughs)</td>
+    <td>dScout Express runs. Synthesize. Refinement briefs for advancing concepts.</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td><strong>Track A</strong></td>
+    <td>Build + stress-test WoZ prompt template. Recruit 5 dogfooders.</td>
+    <td>Begin daily WoZ cycles (weekdays, 5 participants).</td>
+    <td>WoZ continues. Treatment variations. Roll off. Intelligence readiness assessment.</td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td><strong>Track B</strong></td>
+    <td>—</td>
+    <td>—</td>
+    <td>Build prototypes from Gauntlet winners + WoZ learnings. Instrument for analytics.</td>
+    <td>dScout panel testing + moderated labs.</td>
+    <td>Refine top 2. Synthesize. Conviction deck.</td>
+  </tr>
+</table>
+
+<hr>
+
+<!-- 10. DELIVERABLES -->
+<h2>10. Week 5 Deliverables</h2>
+
+<p>Two distinct outputs for cross-functional leadership (research, design, eng, PM):</p>
+
+<div class="callout">
+  <strong>1. Experience Direction Deck</strong><br>
+  "Here are the 2 strongest directions and what each needs to become a product." Funnel narrowing backed by behavioral data, qualitative signal, and instrumented analytics from the prototypes.
+</div>
+
+<div class="callout">
+  <strong>2. Intelligence Readiness Assessment</strong><br>
+  "Can our team build this, or do we need vendor help?" Go/no-go on capability with accuracy trajectory, failure mode analysis, and a clear build-vs-vendor recommendation.
+</div>
+
+<p>The prototype itself is a deliverable for eng — a working reference implementation with an analytics schema, not a Figma file to interpret.</p>
+
+<hr>
+
+<!-- 11. INFRASTRUCTURE -->
+<h2>11. Infrastructure</h2>
+<ul>
+  <li><strong>Deployment:</strong> Vercel (personal account initially, work account when available)</li>
+  <li><strong>Repo structure:</strong> Single repo, each stimulus piece and prototype as its own route</li>
+  <li><strong>Prototype delivery:</strong> Mobile-first web apps in mobile Safari via URL. Phone-only with viewport lock for Track B. Gauntlet stimulus viewable on any device.</li>
+  <li><strong>dScout integration:</strong> Missions link directly to Vercel-hosted URLs</li>
+  <li><strong>Analytics:</strong> Lightweight backend (Firebase/Supabase or similar) baked into prototypes from day one</li>
+</ul>
+
+<hr>
+
+<!-- 12. DECISIONS -->
+<h2>12. Key Decisions Still Needed</h2>
+<ul class="decision-list">
+  <li>Final concept definitions for 4 Gauntlet candidates (detailed enough to build from)</li>
+  <li>Which 5 internal dogfooders?</li>
+  <li>External panel budget and screening criteria</li>
+  <li>Design dimension matrix — positions per prototype</li>
+  <li>Eng handoff model (pre-TestFlight web proto &rarr; native port)</li>
+  <li>Instrumentation spec for behavioral capture</li>
+</ul>
+
+<hr>
+
+<!-- 13. RISKS -->
+<h2>13. Risks &amp; Mitigations</h2>
+<table>
+  <tr><th style="width:30%">Risk</th><th>Mitigation</th></tr>
+  <tr>
+    <td>Week 1 stimulus build is ambitious (8 deliverables)</td>
+    <td>Leverage Claude Code for landing pages and animated substrates. Prioritize concept clarity over polish — the Gauntlet evaluates ideas, not execution quality.</td>
+  </tr>
+  <tr>
+    <td>WoZ operator bottleneck (just Matt)</td>
+    <td>Invest hard in prompt template quality upfront. Batch processing after morning cutoff. Start with 5 participants. Target &le;10 min/participant.</td>
+  </tr>
+  <tr>
+    <td>Compliance drift over daily participation</td>
+    <td>Dogfood group is only 1–2 weeks, not 5. Keep touchpoints under 5 min. Internal accountability.</td>
+  </tr>
+  <tr>
+    <td>Intelligence quality plateau</td>
+    <td>If Track A can't reach threshold, don't force convergence. Prototypes ship with curated data. Intelligence assessment becomes the primary Track A deliverable.</td>
+  </tr>
+  <tr>
+    <td>Design dimension entanglement (each prototype tests multiple things)</td>
+    <td>Targeted lab probes to isolate dimensions. Track A treatment variations isolate density and temporal. Triangulation across methods.</td>
+  </tr>
+  <tr>
+    <td>Gauntlet-to-prototype fidelity gap</td>
+    <td>Concept refinement briefs explicitly flag where the prototype must diverge from the Gauntlet stimulus.</td>
+  </tr>
+</table>
+
+<hr>
+
+<!-- 14. REFERENCE -->
+<h2>14. Reference: Mail Premium Feature Strategy</h2>
+<ul>
+  <li><strong>Life Graph:</strong> LLM model of user's life powering everything</li>
+  <li><strong>Briefs:</strong> AI context at every scale (micro, thread, category, daily)</li>
+  <li><strong>Dynamic Categories:</strong> Personal groupings that appear and fade dynamically</li>
+  <li><strong>Home Surface:</strong> New primary screen — this is what we're researching</li>
+  <li><strong>Generative Search:</strong> Natural language search</li>
+  <li><strong>Inbox Rescue:</strong> One-time cleanup, a la carte, on-ramp to Premium</li>
+  <li><strong>Chief of Staff Agent:</strong> Agentic assistant (long-term, patent pending)</li>
+</ul>
+
+</body>
+</html>
