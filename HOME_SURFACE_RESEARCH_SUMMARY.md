@@ -18,7 +18,7 @@ These questions are interdependent. A great experience with bad intelligence fee
 ### How the Research Works
 
 #### Phase 0: Concept Gauntlet (Weeks 1–2)
-**Purpose:** Go wide, then narrow. Start with 4 distinct visions for what the Home Surface could be. Kill the weak ones fast.
+**Purpose:** Go wide, then narrow. Start with 4 distinct visions for what the Home Surface could be. Kill the weak ones fast. Test with two cohorts to balance contextual realism against intelligence output quality.
 
 **Four concepts, each representing a different design philosophy:**
 
@@ -33,9 +33,17 @@ These questions are interdependent. A great experience with bad intelligence fee
 - **Landing page with embedded motion** — tests desirability *and* feel in one artifact. "Would I want this? Does it feel right?" Built as polished single-page sites with animated sections that hint at surface dynamics.
 - **Narrated video walkthrough** — tests comprehension and flow. Screen-recorded walkthrough of a realistic morning email session with voiceover. "Does this make sense? Could I do this every day?"
 
-**How we test:** dScout Express — participants see 2 concepts/day over 2 days, react after each lens.
+**How we test — two cohorts (both unmoderated dScout Express missions):**
 
-**What comes out:** 2–3 concepts advance to full prototype builds, with refinement notes on what worked and what to fix.
+1. **"Live Data Cohort"** — users port their actual email data into each prototype. Provides contextual realism and data quality insights from testing with real user data. Intelligence output will reflect current calibration state (rougher, with quirks and breaks).
+
+2. **"Real but Anonymized Sample Data Cohort"** — uses real, anonymized email data to simulate real-life messiness, but NOT the users' actual real-time data. Intelligence output is curated into a high-quality "eventual state" version — mimicking where we're striving to get the concept, not where the intel is currently calibrated.
+
+**Why two cohorts:** We want to balance (a) contextual realism + data quality insights from testing with actual user data, with (b) the ability to show users a version with high-level intelligence output that represents the aspirational target, not the current calibration state.
+
+Both cohorts see 2 concepts/day over 2 days, react after each lens.
+
+**What comes out:** 2–3 concepts advance to full prototype builds, with refinement notes on what worked and what to fix. Cross-cohort comparison reveals how much intelligence quality affects concept preference.
 
 ---
 
@@ -102,13 +110,15 @@ These questions are interdependent. A great experience with bad intelligence fee
 
 | Group | Who | When | Purpose |
 |---|---|---|---|
-| **Internal dogfood (5)** | Handpicked Yahoo Mail team, diverse email lives | Weeks 1–3 (Gauntlet reactions + Shadow Inbox) | Calibrate intelligence, test concepts, build internal advocacy |
+| **Gauntlet — Live Data Cohort** | Recruited via dScout, screened for email overwhelm | Weeks 1–2 (Gauntlet) | Contextual realism + data quality insights from real user data; intelligence reflects current calibration state |
+| **Gauntlet — Anonymized Sample Data Cohort** | Recruited via dScout, screened for email overwhelm | Weeks 1–2 (Gauntlet) | Evaluate concepts with curated high-quality "eventual state" intelligence output |
+| **Internal dogfood (5)** | Handpicked Yahoo Mail team, diverse email lives | Weeks 1–3 (Shadow Inbox) | Calibrate intelligence, build internal advocacy |
 | **External dScout panel (5–8)** | Recruited via dScout, screened for email overwhelm | Weeks 3–5 (prototype testing) | Clean-read validation on experience prototypes with calibrated intelligence |
 
 ---
 
 ### What Gets Built (in rough priority order)
-1. **Gauntlet stimulus packages** — 4 landing pages with embedded motion + 4 video walkthroughs
+1. **Gauntlet stimulus packages** — 4 landing pages with embedded motion + 4 video walkthroughs, configured for two cohorts (live data integration for Cohort 1, curated anonymized sample data for Cohort 2)
 2. **WoZ prompt template** — structured input/output for Shadow Inbox simulation, stress-tested before participants start
 3. **Shadow Inbox renderer** — high-fidelity static views from WoZ output
 4. **Interactive prototypes** — 2–3 Gauntlet winners as instrumented web apps (pre-TestFlight, research-owned)
@@ -145,6 +155,6 @@ These questions are interdependent. A great experience with bad intelligence fee
 
 | | Week 1 | Week 2 | Week 3 | Week 4 | Week 5 |
 |---|---|---|---|---|---|
-| **Gauntlet** | Build 8 stimulus pieces | dScout Express runs, synthesize | — | — | — |
+| **Gauntlet** | Build 8 stimulus pieces + two-cohort data setup | Two-cohort dScout Express runs (live data + anonymized sample data), synthesize cross-cohort | — | — | — |
 | **Track A** | Build + stress-test prompt template, recruit 5 dogfooders | Begin daily WoZ (weekdays) | WoZ continues, vary treatments, roll off | — | — |
 | **Track B** | — | — | Build prototypes from Gauntlet winners + WoZ learnings | dScout panel + moderated labs | Refine, synthesize, conviction deck |

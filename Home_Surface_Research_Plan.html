@@ -213,7 +213,7 @@
 <p>We're researching the <strong>Home Surface</strong> — a new primary email screen that replaces the chronological inbox with an intelligent, life-organized experience powered by the Life Graph. Two workstreams run in parallel from the start, then converge:</p>
 
 <ol>
-  <li><strong>Does the experience work?</strong> We start with 4 distinct experience visions, rapidly evaluate them through a <strong>Concept Gauntlet</strong> (landing pages + video walkthroughs via dScout Express), narrowing to 2–3 winners.</li>
+  <li><strong>Does the experience work?</strong> We start with 4 distinct experience visions, rapidly evaluate them through a <strong>Concept Gauntlet</strong> (landing pages + video walkthroughs via dScout Express) run across <strong>two cohorts</strong> — a Live Data Cohort testing with users' real email and an Anonymized Sample Data Cohort testing with curated high-quality intelligence output — narrowing to 2–3 winners.</li>
   <li><strong>Is the intelligence ready?</strong> Running alongside the Gauntlet, <strong>Intelligence Calibration</strong> uses a flexible 6-method toolkit with 5–7 dedicated dogfooders to test whether the Life Graph can distinguish what matters to <em>this specific person</em> from what's generically urgent. Shadow Inbox is the core daily method; five additional methods rotate in based on what we're learning.</li>
 </ol>
 
@@ -341,8 +341,19 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
 </ul>
 <p>These divergences tell you not just <em>which</em> concepts to advance but <em>what to fix about them</em>.</p>
 
+<h4>Two Gauntlet Cohorts</h4>
+<p>The Gauntlet runs as <strong>two parallel cohorts</strong>, both unmoderated dScout Express missions. This structure balances contextual realism with aspirational intelligence quality:</p>
+
+<p><strong>1. Live Data Cohort</strong><br>
+Participants port their actual email data into each prototype. This provides contextual realism — participants react to concepts populated with their own life, not hypothetical scenarios — and surfaces data quality insights from testing with real user data. The tradeoff: because intelligence output reflects the current calibration state, participants will encounter quirks, flaws, and breaks in the system's understanding. Ideally both cohorts would see high-intelligence versions, but development timing means this cohort's output will be rougher.</p>
+
+<p><strong>2. Real but Anonymized Sample Data Cohort</strong><br>
+Uses real, anonymized email data to simulate real-life messiness — but not the participants' own real-time data. Because the data is pre-selected, this cohort's intelligence output can be better curated into a high-quality "eventual state" version, mimicking where we're striving to get the concept rather than where the intelligence is currently calibrated. Participants still see realistic email complexity, but the system's responses represent aspirational quality.</p>
+
+<p><strong>Why two cohorts:</strong> Neither approach alone gives us the full picture. The Live Data Cohort tells us how the concept performs under real conditions with real data quality challenges. The Anonymized Sample Data Cohort tells us how the concept performs when the intelligence is working at its best. Together, they let us separate concept problems from intelligence calibration problems — if a concept fails with both cohorts, the concept is wrong; if it fails only with live data, the intelligence needs work but the concept direction is sound.</p>
+
 <h4>Evaluation</h4>
-<p>dScout Express mission. Participants see 2 concepts/day over 2 days, responding after each lens:</p>
+<p>dScout Express mission (both cohorts). Participants see 2 concepts/day over 2 days, responding after each lens:</p>
 <ul>
   <li>After landing page: "Would you want this? What excites you? What worries you? How does it feel?"</li>
   <li>After walkthrough: "Does this make sense? Where did you get lost? Could you see yourself doing this every morning?"</li>
@@ -638,6 +649,18 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
     <td>Calibrate intelligence via 6-method toolkit, test concepts, build internal advocacy</td>
   </tr>
   <tr>
+    <td><strong>Gauntlet — Live Data Cohort (5–8)</strong></td>
+    <td>Recruited via dScout. Port their real email data into prototypes. No product vision knowledge.</td>
+    <td>Weeks 1–2 (Gauntlet)</td>
+    <td>Concept evaluation with contextual realism; surfaces data quality insights from real user data</td>
+  </tr>
+  <tr>
+    <td><strong>Gauntlet — Anonymized Sample Data Cohort (5–8)</strong></td>
+    <td>Recruited via dScout. Use curated anonymized email data. No product vision knowledge.</td>
+    <td>Weeks 1–2 (Gauntlet)</td>
+    <td>Concept evaluation with aspirational-quality intelligence output; tests eventual-state experience</td>
+  </tr>
+  <tr>
     <td><strong>External dScout panel (5–8)</strong></td>
     <td>Recruited via dScout. No product vision knowledge.</td>
     <td>Weeks 3–5 (prototype testing)</td>
@@ -725,7 +748,7 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
   <tr>
     <td><strong>P0</strong></td>
     <td>Gauntlet stimulus packages</td>
-    <td>4 landing pages with embedded motion + 4 video walkthroughs. 8 deliverables total. Landing pages built as HTML/React, deployed to Vercel. Walkthroughs built as animated visual substrates; voiceover recorded separately.</td>
+    <td>4 landing pages with embedded motion + 4 video walkthroughs. 8 deliverables total. Landing pages built as HTML/React, deployed to Vercel. Walkthroughs built as animated visual substrates; voiceover recorded separately. Two-cohort data requirements: Live Data Cohort needs email data porting pipeline and current-calibration intelligence integration; Anonymized Sample Data Cohort needs curated anonymized email dataset and high-quality "eventual state" intelligence output.</td>
   </tr>
   <tr>
     <td><strong>P1</strong></td>
@@ -759,12 +782,14 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
 <!-- 8. dSCOUT MISSIONS -->
 <h2>8. dScout Mission Design</h2>
 
-<h3>Gauntlet Express Mission</h3>
+<h3>Gauntlet Express Mission (Two Cohorts)</h3>
+<p>Both cohorts run as unmoderated dScout Express missions with identical question flows. The Live Data Cohort sees concepts populated with their own ported email data (current-calibration intelligence); the Anonymized Sample Data Cohort sees concepts populated with curated anonymized email data (eventual-state intelligence quality).</p>
 <ul>
   <li>2 concepts per day, full two-lens package each</li>
   <li>Post-landing-page: desire, excitement, concerns, feel</li>
   <li>Post-walkthrough: comprehension, confusion points, daily viability</li>
   <li>Post-package: real-inbox comparison, replacement viability, single biggest change needed</li>
+  <li>Cross-cohort analysis: compare concept resonance across live-data vs. anonymized-data conditions to separate concept signal from intelligence quality signal</li>
 </ul>
 
 <h3>Intelligence Calibration — Shadow Inbox (Recurring)</h3>
@@ -818,8 +843,8 @@ Screen-recorded walkthrough of a realistic morning email processing scenario wit
   </tr>
   <tr>
     <td><strong>Concept Gauntlet</strong></td>
-    <td>Build 8 stimulus pieces (4 landing pages + 4 walkthroughs)</td>
-    <td>dScout Express runs. Synthesize. Refinement briefs for advancing concepts.</td>
+    <td>Build 8 stimulus pieces (4 landing pages + 4 walkthroughs). Prepare two-cohort data: email porting pipeline for Live Data Cohort + curated anonymized dataset for Sample Data Cohort.</td>
+    <td>Two-cohort dScout Express runs (Live Data + Anonymized Sample Data). Cross-cohort synthesis. Refinement briefs for advancing concepts.</td>
     <td>—</td>
     <td>—</td>
     <td>—</td>

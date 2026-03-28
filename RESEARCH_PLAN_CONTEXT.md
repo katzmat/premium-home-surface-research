@@ -77,7 +77,7 @@ How much triage agency wanted? Varies by email type, trust level, tenure. Defaul
 
 ### Pre-Phase: The Concept Gauntlet
 
-**Goal**: Go wide before going deep. Take 4 distinct experience visions, run through rapid evaluation, identify which 2-3 deserve full prototype builds.
+**Goal**: Go wide before going deep. Take 4 distinct experience visions, run through rapid evaluation, identify which 2-3 deserve full prototype builds. Test with two cohorts to balance contextual realism against intelligence output quality.
 
 **The Two-Lens Stimulus Package**: Each concept expressed through two complementary lenses:
 
@@ -90,15 +90,28 @@ How much triage agency wanted? Varies by email type, trust level, tenure. Defaul
 - Walkthrough clarity ≠ landing page resonance (positioning problem, not design problem)
 - These divergences tell you what to *fix* as concepts become prototypes
 
-**Evaluation**: dScout Express mission. 2 concepts/day over 2 days. After each concept:
+#### Two-Cohort Structure
+
+The Gauntlet runs as **two parallel cohorts**, both unmoderated dScout Express missions:
+
+1. **"Live Data Cohort"** — users port their actual email data into each prototype. Provides contextual realism and data quality insights from testing with real user data. However, the intelligence output will have quirks, flaws, and breaks reflecting the current calibration state. Ideally both cohorts would see high-intelligence versions, but the reality of development timing means this cohort's output will be rougher.
+
+2. **"Real but Anonymized Sample Data Cohort"** — uses real, anonymized email data to simulate real-life messiness, but NOT the users' actual real-time data. This cohort's intelligence output can be better curated into a high-quality "eventual state" version — mimicking where we're striving to get the concept, not where the intel is currently calibrated.
+
+**Why two cohorts:** We want to balance (a) contextual realism + data quality insights from testing with actual user data, with (b) the ability to show users a version with high-level intelligence output that represents the aspirational target, not the current calibration state.
+
+**Evaluation**: Both cohorts run as dScout Express unmoderated missions. 2 concepts/day over 2 days. After each concept:
 - After landing page: "Would you want this? What excites you? What worries you? How does it feel?"
 - After walkthrough: "Does this make sense? Where lost? Could you do this every morning?"
 - After full package: "Compared to real inbox, better? Would this replace current email? Single biggest thing to change?"
+
+Cross-cohort comparison reveals how much intelligence quality affects concept preference and whether rougher live-data output changes which concepts resonate.
 
 **Gauntlet output feeds Track B**:
 - 2-3 concepts advanced to full prototype builds
 - Design dimension priorities (which dimensions mattered most to participants)
 - Concept refinement briefs (what worked, what needs to change per advancing concept)
+- Cross-cohort signal on intelligence quality impact
 
 **Timing**: Weeks 1-2.
 
@@ -235,12 +248,26 @@ WoZ learnings from Track A are baked into Track B prototypes before the external
 
 ---
 
-## 4. Participant Structure — Two Groups, Sequential
+## 4. Participant Structure — Three Groups
+
+### Gauntlet cohorts (two parallel groups, dScout Express)
+
+**Live Data Cohort:**
+- Recruited via dScout, screened for email overwhelm
+- Port their actual email data into the prototypes
+- Provides contextual realism and data quality insights
+- Intelligence output reflects current calibration state (rougher)
+
+**Anonymized Sample Data Cohort:**
+- Recruited via dScout, screened for email overwhelm
+- Uses real, anonymized email data (not their own real-time data)
+- Intelligence output curated to high-quality "eventual state"
+- Represents the aspirational target for model performance
 
 ### Internal dogfood group (5 people)
 - Handpicked, diverse email lives (parents, managers, ICs, subscription-heavy)
 - Weekday cadence, 1-2 weeks
-- Participate in Gauntlet reactions + Shadow Inbox WoZ
+- Participate in Shadow Inbox WoZ
 - Calibrate intelligence, build internal conviction
 - Roll off after Track A completes
 
@@ -250,15 +277,15 @@ WoZ learnings from Track A are baked into Track B prototypes before the external
 - Evaluate experience prototypes with pre-calibrated intelligence
 - Signal: does this make sense to someone encountering it fresh?
 
-**Screening criteria**: High unread (1K+), multiple accounts, inbox stress, high daily volume, personal + professional mix
+**Screening criteria** (all dScout cohorts): High unread (1K+), multiple accounts, inbox stress, high daily volume, personal + professional mix
 
 ---
 
 ## 5. What Needs to Be Built in Claude Code
 
-### Priority 0: Concept Gauntlet Stimulus Packages (4 concepts)
+### Priority 0: Concept Gauntlet Stimulus Packages (4 concepts, two-cohort setup)
 
-For each concept, two deliverables:
+For each concept, two deliverables — configured to support both Gauntlet cohorts:
 
 **A. Value Prop Landing Pages with Embedded Motion**
 - Clean, compelling single-page sites with animated sections
@@ -275,7 +302,11 @@ For each concept, two deliverables:
 - ~60-90 seconds each
 - Claude Code builds the visual substrate; Matt records voiceover
 
-**Total Gauntlet deliverables: 8** (4 landing pages + 4 walkthroughs)
+**Two-cohort data requirements:**
+- **Live Data Cohort**: Prototypes must support importing/porting users' actual email data. Intelligence output runs against real data at current calibration state — expect rougher output with quirks and breaks.
+- **Anonymized Sample Data Cohort**: Prototypes use pre-loaded real but anonymized email data. Intelligence output is curated to represent a high-quality "eventual state" — the aspirational target, not current calibration.
+
+**Total Gauntlet deliverables: 8** (4 landing pages + 4 walkthroughs), each supporting two data modes
 
 ### Priority 1: WoZ Prompt Template System
 
@@ -408,7 +439,7 @@ Each persona needs **incoming** (today's new) and **upcoming** (extracted obliga
 
 | | Week 1 | Week 2 | Week 3 | Week 4 | Week 5 |
 |---|---|---|---|---|---|
-| **Gauntlet** | Build 8 stimulus pieces (4 landing pages + 4 walkthroughs) | dScout Express runs, synthesize, refinement briefs | — | — | — |
+| **Gauntlet** | Build 8 stimulus pieces + two-cohort data setup (live data integration + curated anonymized data) | Two-cohort dScout Express runs (live data + anonymized sample data), synthesize cross-cohort, refinement briefs | — | — | — |
 | **Track A** | Build + stress-test WoZ prompt template, recruit 5 dogfooders | Begin daily WoZ (weekdays, 5 participants) | WoZ continues, vary treatments, roll off | — | — |
 | **Track B** | — | — | Build prototypes from Gauntlet winners + WoZ learnings | dScout panel + moderated labs | Refine, synthesize, conviction deck |
 
